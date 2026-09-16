@@ -1,0 +1,46 @@
+name: Update season data
+
+on:
+  schedule:
+    # Tuesday 06:00 UTC, the morning after a Monday night fixture.
+    # Cron here is always UTC, so this shifts by an hour across Dutch DST.
+    # That is fine for a once-a-week job.
+    - cron: '0 6 * * 2'
+  workflow_dispatch:        # lets you run it by hand from the Actions tab
+
+permissions:
+  contents: write           # the job commits back to the repo
+
+concurrency:
+  group: update-season      # never let two runs fight over the same files
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'      # built-in fetch, no dependencies to install
+
+      - name: Pull the results sheet
+        env:
+          SHEET_CSV_URL: ${{ vars.SHEET_CSV_URL }}
+        run: node scripts/sync.mjs
+
+      - name: Recompute the position history
+        run: node scripts/snapshot.mjs
+
+      - name: Commit if anything changed
+        run: |
+          if [ -z "$(git status --porcelain data history)" ]; then
+            echo "Nothing changed."
+            exit 0
+          fi
+          git config user.name  "mel-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data history
+          git commit -m "Update season data ($(date -u +%Y-%m-%d))"
+          git push
