@@ -51,6 +51,9 @@ button{cursor:pointer}
   max-width:60ch;white-space:pre-line}
 
 .grid{display:grid;gap:0}
+/* grid items default to min-width:auto, so a wide chart would stretch the whole
+   column and take the league table with it — the chart scrolls, the page does not */
+.grid>section{min-width:0}
 @media(min-width:900px){.grid{grid-template-columns:1fr 1fr;gap:0 44px}.grid .full{grid-column:1/-1}}
 section{padding:30px 0;border-bottom:1px solid var(--line)}
 section h2{font-family:var(--display);font-weight:400;font-size:19px;letter-spacing:.02em;margin:0 0 4px;line-height:1.1}
@@ -76,6 +79,21 @@ section .hint{color:var(--mute);font-size:13px;margin:0 0 18px;max-width:64ch}
 .tbl td.pts{font-weight:700}
 .tbl tr.me td{background:rgba(232,180,58,.09)}
 .tbl tr.me td:nth-child(2){box-shadow:inset 3px 0 0 var(--flood);padding-left:9px}
+.tbl th.fm,.tbl td.fm{text-align:right;padding-left:16px;padding-right:3px;white-space:nowrap}
+.tbl tr.tr{cursor:pointer}
+.tbl tr.tr:hover td{background:rgba(255,255,255,.035)}
+.tbl tr.tr:focus-visible{outline:2px solid var(--flood);outline-offset:-2px}
+.tbl tr.tr td:nth-child(2)::after{content:"›";color:var(--mute);margin-left:9px;
+  display:inline-block;transform-origin:50% 55%;transition:transform .12s ease}
+.tbl tr.tr.open td:nth-child(2)::after{transform:rotate(90deg);color:var(--flood)}
+.tbl tr.tr.open td{background:rgba(15,111,198,.10)}
+.tbl .det td{width:auto;text-align:left;color:var(--chalk);padding:0;
+  background:rgba(15,111,198,.06);border-bottom:1px solid var(--line)}
+.tdet{padding:10px 4px 16px 26px;max-width:660px}
+.dh{display:flex;flex-wrap:wrap;gap:2px 11px;align-items:baseline;font-size:14.5px;margin-bottom:2px}
+.dh .dim{font-size:13px}
+.tdet .rows li{padding:8px 0}
+.form i.now{box-shadow:0 0 0 2px var(--pitch),0 0 0 3px rgba(238,242,247,.42)}
 
 
 .rows{margin:0;padding:0;list-style:none}
@@ -97,7 +115,7 @@ section .hint{color:var(--mute);font-size:13px;margin:0 0 18px;max-width:64ch}
 .empty{border:1px dashed var(--line);border-radius:10px;padding:22px;color:var(--mute);font-size:14.5px}
 .empty b{display:block;color:var(--chalk);font-weight:600;margin-bottom:4px;font-size:15px}
 
-.chartwrap{overflow-x:auto;margin-top:6px;padding-bottom:2px}
+.chartwrap{overflow-x:auto;max-width:100%;margin-top:6px;padding-bottom:2px}
 .bump{display:block;height:auto;margin:0 auto;font-family:var(--ui)}
 .bump .col{stroke:rgba(46,54,68,.5);stroke-width:1}
 .bump .ax{fill:var(--mute);font-size:11px;text-anchor:middle}
@@ -136,7 +154,13 @@ section .hint{color:var(--mute);font-size:13px;margin:0 0 18px;max-width:64ch}
 @media(max-width:600px){
   .wrap{padding:0 15px 60px}
   .tbl{font-size:13px}
-  .tbl th:nth-child(7),.tbl td:nth-child(7),.tbl th:nth-child(8),.tbl td:nth-child(8){display:none}
+  .tbl th:nth-child(4),.tbl td:nth-child(4),.tbl th:nth-child(5),.tbl td:nth-child(5),
+  .tbl th:nth-child(6),.tbl td:nth-child(6),.tbl th:nth-child(7),.tbl td:nth-child(7),
+  .tbl th:nth-child(8),.tbl td:nth-child(8){display:none}
+  .tbl th.fm,.tbl td.fm{padding-left:10px}
+  .tbl td.fm .form{gap:3px}
+  .tbl td.fm .form i{width:17px;height:17px;font-size:10px}
+  .tdet{padding-left:12px}
   .tbl td:nth-child(2){max-width:38vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .rows li{grid-template-columns:62px 1fr auto;gap:10px}
 }
