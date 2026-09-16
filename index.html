@@ -168,7 +168,10 @@ section h2{padding-left:11px;border-left:3px solid var(--blue)}
 <body>
 <div id="app"><div class="wrap"><p class="hint" style="padding-top:40px">Loading the season…</p></div></div>
 <script type="module">
-  import { boot } from './lib/render.mjs';
+  // Pages caches .mjs for ten minutes. Without this stamp a deploy can leave a
+  // stale lib/render.mjs running against a fresh index.html, which fails in
+  // whatever way the two versions happen to disagree. Costs a few KB per load.
+  const { boot } = await import(`./lib/render.mjs?v=${Date.now()}`);
   boot();
 </script>
 </body>
