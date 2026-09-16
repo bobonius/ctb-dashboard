@@ -34,10 +34,11 @@ is what lets you rename a team or move a match without anything breaking.
 Type scores into the sheet as they come in. Tuesday morning the Action pulls
 them, recomputes the position history, and commits. You do nothing.
 
-After your own match, open the site, hit **Log a match**, mark who played and who
-scored, then copy the CSV it gives you and paste it over `data/appearances.csv`.
-That is the only part that needs a commit from you, and it is the part the sheet
-cannot check, because the logger reconciles player goals against the team score.
+After your own match, edit `data/appearances.csv` on your laptop — one row per
+player per match, `fixture_id,player_id,status,goals,assists` — and commit. That
+is the only part that needs a commit from you, and it is the part the sheet
+cannot check. The published page is read-only on purpose: it renders the data and
+offers no way to change it, so there is nothing for a visitor to press.
 
 ## Working on it locally
 
