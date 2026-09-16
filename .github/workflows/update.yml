@@ -30,17 +30,14 @@ jobs:
           SHEET_CSV_URL: ${{ vars.SHEET_CSV_URL }}
         run: node scripts/sync.mjs
 
-      - name: Recompute the position history
-        run: node scripts/snapshot.mjs
-
       - name: Commit if anything changed
         run: |
-          if [ -z "$(git status --porcelain data history)" ]; then
+          if [ -z "$(git status --porcelain data)" ]; then
             echo "Nothing changed."
             exit 0
           fi
           git config user.name  "mel-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data history
+          git add data
           git commit -m "Update season data ($(date -u +%Y-%m-%d))"
           git push

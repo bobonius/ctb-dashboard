@@ -62,9 +62,7 @@ data/meta.json           team, season, venue, message for the group
 data/fixtures.csv        overwritten by the sync job
 data/squad.csv           id, name, active
 data/appearances.csv     one row per player per match
-history/positions.csv    the position graph's data
 scripts/sync.mjs         sheet → fixtures.csv
-scripts/snapshot.mjs     fixtures.csv → positions.csv
 ```
 
 ### The one rule
@@ -81,14 +79,16 @@ it actually happened. Postponing a match means moving `date` forward in the
 sheet. That removes it from the earlier week's completeness check, so that week
 can still count as complete, while `played_on` keeps the table replay honest.
 
-### Why the position graph has gaps
+### How the position chart works
 
-A matchday is only plotted when every fixture scheduled up to that point has a
-score. Skip a week of data entry and the line skips it too, rather than showing
-a false dip caused by teams whose results are missing. To fill a gap without
-backfilling the results, add a row to `history/positions.csv` with
-`source=manual` and the numbers off Playpass. Manual rows are never overwritten
-and are drawn hollow on the chart.
+Every team's rank after every matchday that produced at least one result,
+replayed from `data/fixtures.csv` in the browser. Nothing is stored: correct a
+score in the sheet and the whole chart corrects itself on the next load.
+
+A week counts as soon as one score is in, so a half-filled matchday still moves
+the lines. Teams whose own result for that week is still missing keep their
+position but are drawn dimmed, which is the honest reading — they have not
+dropped, they have not played. Club Tower Brugge is the gold line.
 
 ## Worth doing later
 
