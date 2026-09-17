@@ -130,6 +130,21 @@ section .hint{color:var(--mute);font-size:13px;margin:0 0 18px;max-width:64ch}
 .rows .sc.w{color:var(--grass)}.rows .sc.l{color:var(--brick)}.rows .sc.d{color:var(--mute)}
 .rows .sc.tbd{font-family:var(--ui);font-size:13px;color:var(--mute);font-weight:500}
 .moved{color:var(--flood);font-size:12px}
+.rows li.mrow.can{cursor:pointer}
+.rows li.mrow.can:hover .vs{color:var(--sky)}
+.rows li.mrow.can:focus-visible{outline:2px solid var(--flood);outline-offset:-2px}
+.rows li.mrow.can .vs::after{content:"›";color:var(--mute);margin-left:9px;display:inline-block;
+  transform-origin:50% 55%;transition:transform .12s ease}
+.rows li.mrow.can.open .vs::after{transform:rotate(90deg);color:var(--flood)}
+.rows li.mdet{display:block;padding:0 0 18px;border-bottom:1px solid rgba(46,54,68,.45)}
+.rows li.mdet[hidden]{display:none}
+.mpanel{display:grid;gap:18px;padding-top:4px}
+@media(min-width:900px){.mpanel{grid-template-columns:250px minmax(0,1fr);gap:26px;align-items:start}}
+.mpanel .xi{max-width:250px}
+.mpanel .run{display:grid;gap:10px;align-content:start}
+.mpanel .run .strip{margin-top:0}
+.strip .lbl svg{width:14px;height:14px;vertical-align:-3px;margin-right:5px;color:var(--flood)}
+.strip .sub b.x{color:var(--flood);font-weight:700;margin:0 0 0 5px;font-size:12px}
 .rows .nt{grid-column:2/-1;margin-top:5px;padding-left:11px;font-size:13px;
   color:var(--mute);border-left:2px solid var(--blue);white-space:pre-line}
 
