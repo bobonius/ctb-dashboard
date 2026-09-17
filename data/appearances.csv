@@ -3,7 +3,10 @@
 #   squad       everyone who played, ids separated by commas
 #   goals       ids of scorers, id:2 for a brace. A scorer not in squad is added to it.
 #   assists     same shape
+#   formation   the starting eleven, written BEFORE the match: LABEL:id pairs,
+#               e.g. GK:Bob,CB:Tom,CB:Marlo,CM:Loek,ST:Jesse,BENCH:Stefan
+#               Labels repeat; order within a line runs left to right.
 # Quote any field that contains a comma. Example:
 #   5,"Tom,Stefan,Dani","Tom:2,Dani","Stefan"
-fixture_id,squad,goals,assists
+fixture_id,squad,goals,assists,formation
 5,"Bob,Tom,Marlo,Loek,Odin,Dani,Jesse,Stefan,Twan",,

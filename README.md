@@ -54,6 +54,24 @@ fixture_id,squad,goals,assists
 than one. Quote any field with a comma in it. A scorer missing from `squad` is
 taken to have played, because you cannot score in a match you were not in.
 
+`formation` is the starting eleven, written **before** the match:
+
+```
+14,,,,"GK:Bob,CB:Tom,CB:Marlo,CM:Loek,LM:Odin,RM:Dani,ST:Jesse,BENCH:Stefan"
+```
+
+It lives in its own column rather than inside `squad`, because `squad` means who
+played — a plan written there would hand everyone an appearance for a match that
+has not kicked off. Create the row before the game with only the formation,
+complete it afterwards with squad, goals and assists.
+
+Labels repeat freely (`CB:Tom,CB:Marlo`). Anything starting with L or R is
+placed on that side of its line; the rest keep the order you wrote. GK, LB, CB,
+RB, LWB, RWB, SW, CDM, DM, LM, CM, RM, CAM, AM, LW, RW, ST, CF and SS know where
+they belong on the pitch, `BENCH` goes to the strip underneath, and a label that
+is none of these is listed under "Also" rather than dropped — the positions are
+fluid and inventing one should cost nothing.
+
 There is no row for players who missed a match — absence is simply not being
 listed, which halves the typing. A fixture counts as logged the moment it has a
 line, so the attendance grid can tell "did not play" from "not logged yet".
