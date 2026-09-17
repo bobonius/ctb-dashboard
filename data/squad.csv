@@ -3,7 +3,7 @@
 # `active` false keeps a player's history but drops them off the attendance grid.
 # `photo` is a file in data/faces/ (e.g. bob.jpg). Leave it empty for a silhouette.
 id,name,active,photo
-Bob,Bob,true
+Bob,Bob,true,bob.jpg
 Tom,Tom,true
 Marlo,Marlo,true
 Loek,Loek,true
