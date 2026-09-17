@@ -14,6 +14,7 @@
   --chalk:#eef2f7;--mute:#8c97a8;--flood:#e8b43a;--grass:#46b27c;--brick:#d1514a;
   --blue:#0f6fc6;--blue-deep:#0a4f93;--sky:#57aef0;--jet:#05060a;
   --rank:#41506a;--rank-off:#222b38;
+  --grass-a:#1b5733;--grass-b:#17492b;--chalk-line:rgba(255,255,255,.34);
   --display:"Fraunces",Georgia,"Times New Roman",serif;
   --ui:"Inter",ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 }
@@ -161,23 +162,30 @@ section .hint{color:var(--mute);font-size:13px;margin:0 0 18px;max-width:64ch}
 .legend i.off{background:var(--rank-off);box-shadow:inset 0 0 0 1px #3b4657}
 
 .pitchwrap{max-width:430px}
-.pitch{position:relative;aspect-ratio:3/4;border:1px solid var(--line);border-radius:12px;
-  background:linear-gradient(180deg,rgba(15,111,198,.07),rgba(15,111,198,.02));overflow:hidden}
-.pitch::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:1px solid var(--line)}
-.pitch::after{content:"";position:absolute;left:50%;top:50%;width:84px;height:84px;margin:-42px 0 0 -42px;
-  border:1px solid var(--line);border-radius:50%}
-.pitch .box{position:absolute;left:22%;right:22%;bottom:0;height:16%;border:1px solid var(--line);
-  border-bottom:0;border-radius:6px 6px 0 0}
-.chip{position:absolute;transform:translate(-50%,-50%);display:grid;justify-items:center;gap:3px;width:74px}
-.chip .sh{width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;
-  font-size:10.5px;font-weight:700;display:grid;place-items:center;letter-spacing:.02em;
-  box-shadow:0 0 0 2px var(--pitch)}
-.chip .nm{font-size:12px;color:var(--chalk);text-align:center;line-height:1.15;
-  text-shadow:0 1px 3px var(--pitch)}
+.pitch{position:relative;aspect-ratio:3/4;border-radius:12px;overflow:hidden;
+  background:repeating-linear-gradient(180deg,var(--grass-a) 0 12.5%,var(--grass-b) 12.5% 25%);
+  box-shadow:inset 0 0 0 2px var(--chalk-line),0 1px 0 rgba(255,255,255,.04)}
+.pitch::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:2px solid var(--chalk-line)}
+.pitch::after{content:"";position:absolute;left:50%;top:50%;width:26%;aspect-ratio:1;
+  transform:translate(-50%,-50%);border:2px solid var(--chalk-line);border-radius:50%}
+.pitch .box{position:absolute;left:19%;right:19%;bottom:0;height:15%;
+  border:2px solid var(--chalk-line);border-bottom:0}
+.pitch .box.six{left:33%;right:33%;height:6.5%}
+.pitch .box.top{bottom:auto;top:0;border:2px solid var(--chalk-line);border-top:0}
+.chip{position:absolute;transform:translate(-50%,-50%);display:grid;justify-items:center;gap:4px;width:76px}
+.chip .ph{position:relative;display:block;width:46px;height:46px;border-radius:11px;overflow:hidden;
+  background:#2b3444;box-shadow:0 0 0 2px rgba(255,255,255,.9),0 3px 7px rgba(0,0,0,.5)}
+.chip .face{width:100%;height:100%;object-fit:cover;display:block}
+.chip .pos{position:absolute;left:0;bottom:0;background:var(--blue);color:#fff;font-size:8.5px;
+  font-weight:700;line-height:1;padding:3px 4px;border-radius:0 6px 0 0;letter-spacing:.03em}
+.chip .nm{font-size:11.5px;color:#fff;text-align:center;line-height:1.15;background:rgba(5,12,8,.66);
+  border-radius:999px;padding:2px 8px;white-space:nowrap;max-width:76px;overflow:hidden;
+  text-overflow:ellipsis}
 .strip{display:flex;flex-wrap:wrap;align-items:center;gap:7px 10px;margin-top:12px}
 .strip .lbl{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
 .strip .sub{font-size:13px;color:var(--chalk);border:1px solid var(--line);border-radius:999px;
-  padding:4px 11px}
+  padding:3px 11px 3px 4px;display:inline-flex;align-items:center;gap:7px}
+.strip .sub .face{width:22px;height:22px;border-radius:50%;object-fit:cover;background:#2b3444}
 .strip .sub b{color:var(--sky);font-weight:700;margin-right:6px;font-size:11px}
 
 .attwrap{overflow-x:auto;padding-bottom:2px}
@@ -281,6 +289,11 @@ section h2{padding-left:11px;border-left:3px solid var(--blue)}
     <symbol id="i-boot" viewBox="0 0 24 24">
       <path fill="currentColor" d="M2.4 16.2c0-1.7 1.2-3.1 2.9-3.5l6.1-1.4c1-.2 1.8-.9 2.2-1.9l1-2.6c.3-.8 1.2-1.2 2-1l1.9.6c.8.3 1.3 1.1 1.2 1.9l-1 8.2c-.1.9-.9 1.6-1.8 1.6H3.3c-.5 0-.9-.4-.9-.9v-1z"/>
       <path fill="currentColor" d="M2.6 19.4h16.6v1.2a.8.8 0 0 1-.8.8h-.6v1.1a.5.5 0 0 1-.5.5h-1.1a.5.5 0 0 1-.5-.5v-1.1h-3.3v1.1a.5.5 0 0 1-.5.5h-1.1a.5.5 0 0 1-.5-.5v-1.1H7v1.1a.5.5 0 0 1-.5.5H5.4a.5.5 0 0 1-.5-.5v-1.1h-.6a.8.8 0 0 1-.8-.8z"/>
+    </symbol>
+    <symbol id="i-face" viewBox="0 0 48 48">
+      <rect width="48" height="48" fill="#2b3444"/>
+      <circle cx="24" cy="18.5" r="8.4" fill="#5b6a83"/>
+      <path fill="#5b6a83" d="M7.5 47c0-8.4 7.4-13.8 16.5-13.8S40.5 38.6 40.5 47z"/>
     </symbol>
   </defs>
 </svg>

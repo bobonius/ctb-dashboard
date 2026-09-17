@@ -1,7 +1,8 @@
 # One line per player. `id` is the short name you type when logging a match —
 # keep it consistent, and never change it once it has been used in appearances.csv.
 # `active` false keeps a player's history but drops them off the attendance grid.
-id,name,active
+# `photo` is a file in data/faces/ (e.g. bob.jpg). Leave it empty for a silhouette.
+id,name,active,photo
 Bob,Bob,true
 Tom,Tom,true
 Marlo,Marlo,true
