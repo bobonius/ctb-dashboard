@@ -2,3 +2,6 @@
 Thumbs.db
 node_modules/
 .vscode/
+
+# Files Claude delivers into the chat land here; they are not part of the site.
+Claude outputs/
