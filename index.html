@@ -38,6 +38,12 @@ button{cursor:pointer}
   -webkit-mask-image:linear-gradient(90deg,rgba(0,0,0,0),#000 60%,rgba(0,0,0,.15));
   mask-image:linear-gradient(90deg,rgba(0,0,0,0),#000 60%,rgba(0,0,0,.15));pointer-events:none}
 .hero>*{position:relative}
+.hero.has-xi{display:grid;gap:26px}
+@media(min-width:900px){.hero.has-xi{grid-template-columns:minmax(0,1fr) 300px;align-items:start;gap:34px}}
+/* the stripe band and a grass pitch fight; the pitch wins */
+.hero.has-xi::before{display:none}
+.xi .kick{margin-bottom:8px}
+.xi{max-width:430px}
 .kick{color:var(--flood);font-size:13px;font-weight:600;letter-spacing:.06em;margin-bottom:10px}
 .opp{font-family:var(--display);font-weight:900;line-height:.98;letter-spacing:-.022em;
   font-size:clamp(34px,8.5vw,70px);margin:0 0 16px;max-width:18ch}
@@ -161,7 +167,6 @@ section .hint{color:var(--mute);font-size:13px;margin:0 0 18px;max-width:64ch}
 .legend i.me{background:var(--flood)}
 .legend i.off{background:var(--rank-off);box-shadow:inset 0 0 0 1px #3b4657}
 
-.pitchwrap{max-width:430px}
 .pitch{position:relative;aspect-ratio:3/4;border-radius:12px;overflow:hidden;
   background:repeating-linear-gradient(180deg,var(--grass-a) 0 12.5%,var(--grass-b) 12.5% 25%);
   box-shadow:inset 0 0 0 2px var(--chalk-line),0 1px 0 rgba(255,255,255,.04)}
@@ -172,7 +177,7 @@ section .hint{color:var(--mute);font-size:13px;margin:0 0 18px;max-width:64ch}
   border:2px solid var(--chalk-line);border-bottom:0}
 .pitch .box.six{left:33%;right:33%;height:6.5%}
 .pitch .box.top{bottom:auto;top:0;border:2px solid var(--chalk-line);border-top:0}
-.chip{position:absolute;transform:translate(-50%,-50%);display:grid;justify-items:center;gap:4px;width:76px}
+.chip{position:absolute;transform:translate(-50%,-50%);display:grid;justify-items:center;gap:4px;width:70px}
 .chip .ph{position:relative;display:block;width:46px;height:46px;border-radius:11px;overflow:hidden;
   background:#2b3444;box-shadow:0 0 0 2px rgba(255,255,255,.9),0 3px 7px rgba(0,0,0,.5)}
 .chip .face{width:100%;height:100%;object-fit:cover;display:block}
@@ -180,7 +185,7 @@ section .hint{color:var(--mute);font-size:13px;margin:0 0 18px;max-width:64ch}
   font-weight:700;line-height:1;padding:3px 4px;border-radius:0 6px 0 0;letter-spacing:.03em}
 .chip .nm{font-size:11.5px;color:#fff;text-align:center;line-height:1.15;background:rgba(5,12,8,.66);
   border-radius:999px;padding:2px 8px;white-space:nowrap;max-width:76px;overflow:hidden;
-  text-overflow:ellipsis}
+  text-overflow:ellipsis;max-width:70px}
 .strip{display:flex;flex-wrap:wrap;align-items:center;gap:7px 10px;margin-top:12px}
 .strip .lbl{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
 .strip .sub{font-size:13px;color:var(--chalk);border:1px solid var(--line);border-radius:999px;
