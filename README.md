@@ -31,6 +31,10 @@ id,date,played_on,time,field,home,away,home_score,away_score,note
 **do not remove it, and do not renumber rows.** `appearances.csv` points at
 fixtures by `id`.
 
+`phase` is 1 for the single round and 2 for the split after the winter break.
+`group` is empty in phase 1, then `top` or `bottom`. A row with no phase counts
+as phase 1, so the file read the same before the split existed.
+
 `note` is free text and optional. Whatever you put there shows under that match
 in *Our season*, so it is the place for "short two players", "moved to 1A",
 "Sander's last game". Leave it empty and nothing is rendered.
@@ -76,6 +80,25 @@ ended up on a different evening. The chart and the table replay results by
 `played_on`, so a rearranged match still lands on the matchday it was played on
 rather than the one it was meant for.
 
+### The two phases
+
+Everyone plays everyone once, and on 11 January the league splits: the top
+eight and the bottom eight each play their own double round, **everyone back on
+zero points**. So phase 2 is two separate competitions that happen to share an
+evening.
+
+The table has a Phase 1 / Phase 2 switch above it once phase-2 fixtures exist,
+and shows two tables in phase 2. During phase 1 a blue line under eighth place
+marks who is currently heading for the top group.
+
+A phase-2 table starts with everyone level, so where a team finished the single
+round is the last tiebreak. That is the only thing phase 1 carries forward —
+points, goals and form all start again.
+
+Phase-2 ids start at 1001. `appearances.csv` points at fixtures by id, so if
+Playpass numbers its second competition from 1 again, reusing those ids would
+silently reassign who played in September.
+
 ### How the position chart works
 
 Every team's rank after every matchday that produced at least one result,
@@ -86,6 +109,12 @@ A week counts as soon as one score is in, so a half-filled matchday still moves
 the lines. Teams whose own result for that week is still missing keep their
 position but are drawn dimmed, which is the honest reading — they have not
 dropped, they have not played. Club Tower Brugge is the gold line.
+
+One chart covers both phases. Before the break a team can move anywhere in the
+sixteen. After it, each group is ranked inside itself and then offset — the top
+group holds rows 1-8, the bottom group rows 9-16 — so the blue line is the one
+thing nobody can cross, which is the whole point of the season. A node's number
+is its row in that chart; the tooltip gives the rank within the group.
 
 ### Why the modules carry a `?v=` stamp
 

@@ -92,6 +92,21 @@ section .hint{color:var(--mute);font-size:13px;margin:0 0 18px;max-width:64ch}
 .tdet{padding:2px 4px 14px 26px;max-width:660px}
 .tdet .rows li{padding:8px 0}
 .form i.now{box-shadow:0 0 0 2px var(--pitch),0 0 0 3px rgba(238,242,247,.42)}
+.pswitch{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin:2px 0 14px}
+.pswitch button{background:none;border:0;padding:7px 16px;font-size:13.5px;font-weight:600;color:var(--mute)}
+.pswitch button[aria-selected="true"]{background:var(--blue);color:#fff}
+.gh{font-family:var(--display);font-weight:400;font-size:16px;letter-spacing:.02em;
+  margin:22px 0 8px;padding-left:10px;border-left:3px solid var(--blue)}
+.gh:first-of-type{margin-top:6px}
+.tbl tr.up td:nth-child(1){box-shadow:inset 3px 0 0 var(--blue)}
+.tbl tr.cut td{border-bottom:2px solid var(--blue)}
+.legend i.cut{width:14px;height:3px;border-radius:2px;background:var(--blue);margin-bottom:2px}
+.tdet .ph{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--mute);margin:14px 0 2px}
+.tdet .ph:first-child{margin-top:0}
+.bump .cutline{stroke:var(--blue);stroke-width:2;opacity:.75}
+.bump .brk{stroke:var(--mute);stroke-width:1;stroke-dasharray:3 4;opacity:.6}
+.bump .brklbl{fill:var(--mute);font-size:10.5px}
 
 
 .rows{margin:0;padding:0;list-style:none}
