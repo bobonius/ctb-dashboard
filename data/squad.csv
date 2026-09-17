@@ -1,1 +1,4 @@
+# One line per player. `id` is the short name you type when logging a match —
+# keep it lowercase, no spaces, and never change it once it has been used.
+# `active` false keeps a player's history but drops them off the attendance grid.
 id,name,active

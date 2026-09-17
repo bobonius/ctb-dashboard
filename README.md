@@ -13,10 +13,9 @@ That is the entire setup.
 ## The weekly routine
 
 After the matches, open `data/fixtures.csv` and type the scores into
-`home_score` and `away_score`. Add a line to `data/appearances.csv` for each of
-your own players who turned up — `fixture_id,player_id,status,goals,assists`.
-Commit. The page recomputes the table, the form column and the position chart
-from those rows on the next load.
+`home_score` and `away_score`. Add **one line** to `data/appearances.csv` for
+your own match. Commit. The page recomputes the table, the boards, the chart and
+the attendance grid from those rows on the next load.
 
 The published page is read-only on purpose: it renders the data and offers no way
 to change it, so there is nothing for a visitor to press.
@@ -42,6 +41,30 @@ in *Our season*, so it is the place for "short two players", "moved to 1A",
 A row counts as played once both score cells have a number. An empty pair means
 the match is still ahead of you, whatever its date says.
 
+### Logging a match
+
+One line per match, not per player:
+
+```
+fixture_id,squad,goals,assists
+5,"tom,stefan,niels,bob","tom:2,niels","stefan"
+```
+
+`squad` is everyone who played. `goals` and `assists` are ids, `:n` for more
+than one. Quote any field with a comma in it. A scorer missing from `squad` is
+taken to have played, because you cannot score in a match you were not in.
+
+There is no row for players who missed a match — absence is simply not being
+listed, which halves the typing. A fixture counts as logged the moment it has a
+line, so the attendance grid can tell "did not play" from "not logged yet".
+
+The ids come from `data/squad.csv` and are yours to choose. Short lowercase
+names beat numbers: you will be typing them on a phone on the way home.
+
+Two things the file cannot check itself, so the page does, quietly, under
+Attendance: player goals that do not add up to the team's score, and ids that
+appear in no squad row. Both are typos.
+
 ## Working on it locally
 
 `index.html` loads ES modules and fetches the CSVs, so **opening the file
@@ -62,7 +85,7 @@ lib/csv.mjs              CSV reader
 data/meta.json           team, season, venue, message for the group
 data/fixtures.csv        the season: one row per match, all teams
 data/squad.csv           id, name, active
-data/appearances.csv     one row per player per match
+data/appearances.csv     one line per match, not per player
 ```
 
 ### The one rule

@@ -1,1 +1,8 @@
-fixture_id,player_id,status,goals,assists
+# One line per match, not per player.
+#   fixture_id  the id from fixtures.csv
+#   squad       everyone who played, ids separated by commas
+#   goals       ids of scorers, id:2 for a brace. A scorer not in squad is added to it.
+#   assists     same shape
+# Quote any field that contains a comma. Example:
+#   5,"tom,stefan,niels","tom:2,niels","stefan"
+fixture_id,squad,goals,assists
