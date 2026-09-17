@@ -7,7 +7,7 @@
 #   (empty) not asked yet
 #   no      asked, declined — same silhouette, but you know not to ask again
 id,name,active,photo
-Bob,Bob,true,bob.jpg
+Bob,Bob,true,bob.webp
 Tom,Tom,true
 Marlo,Marlo,true
 Loek,Loek,true
