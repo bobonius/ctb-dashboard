@@ -6,4 +6,4 @@
 # Quote any field that contains a comma. Example:
 #   5,"Tom,Stefan,Dani","Tom:2,Dani","Stefan"
 fixture_id,squad,goals,assists
-5,"Bob,Tom,Marlo,Loek,Odin,Dani,Jesse,Stefan,Twan","Bob:2,Jesse","Bob,Stefan"
+5,"Bob,Tom,Marlo,Loek,Odin,Dani,Jesse,Stefan,Twan",,
