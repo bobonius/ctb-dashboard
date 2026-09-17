@@ -7,6 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- TEMPORARY, for the font trial. Drop this line and the #fontpick block when a face is chosen. -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 
 :root{
@@ -17,6 +19,27 @@
   --display:"Anton","Arial Narrow",Haettenschweiler,Impact,sans-serif;
   --ui:"Instrument Sans",ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 }
+/* TEMPORARY font trial — :root[data-font="fraunces"] swaps the pair. Delete with #fontpick. */
+:root[data-font="fraunces"]{
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --ui:"Inter",ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+:root[data-font="fraunces"] .opp{font-size:clamp(34px,8.5vw,70px);line-height:.98;letter-spacing:-.022em;max-width:18ch}
+:root[data-font="fraunces"] .mast h1{font-size:21px;letter-spacing:-.01em}
+:root[data-font="fraunces"] section h2,:root[data-font="fraunces"] .gh{letter-spacing:-.01em}
+:root[data-font="fraunces"] .lb .val,:root[data-font="fraunces"] .rows .sc,
+:root[data-font="fraunces"] .count strong{font-weight:700}
+
+#fontpick{position:fixed;right:14px;bottom:14px;z-index:60;display:flex;gap:2px;padding:3px;
+  border:1px solid var(--line);border-radius:999px;background:rgba(11,12,16,.92);
+  backdrop-filter:blur(6px);font-family:var(--ui);font-size:12.5px}
+#fontpick button{background:none;border:0;border-radius:999px;padding:6px 12px;color:var(--mute);
+  font-weight:600;font-size:12.5px;cursor:pointer}
+#fontpick button[aria-pressed="true"]{background:var(--blue);color:#fff}
+#fontpick .lbl{color:var(--mute);padding:6px 4px 6px 10px;font-size:11.5px;letter-spacing:.04em;
+  text-transform:uppercase;align-self:center}
+@media print{#fontpick{display:none}}
+
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{background:var(--pitch);color:var(--chalk);font-family:var(--ui);font-size:16px;
@@ -209,6 +232,13 @@ section h2{padding-left:11px;border-left:3px solid var(--blue)}
 </style>
 </head>
 <body>
+<!-- TEMPORARY font trial. Remove this block, its CSS, the second fonts link and the
+     script at the end of the body once a face is picked. -->
+<div id="fontpick">
+  <span class="lbl">Font</span>
+  <button data-font="" aria-pressed="true">Anton</button>
+  <button data-font="fraunces" aria-pressed="false">Fraunces</button>
+</div>
 <div id="app"><div class="wrap"><p class="hint" style="padding-top:40px">Loading the season…</p></div></div>
 <script type="module">
   // Pages caches .mjs for ten minutes. Without this stamp a deploy can leave a
@@ -216,6 +246,24 @@ section h2{padding-left:11px;border-left:3px solid var(--blue)}
   // whatever way the two versions happen to disagree. Costs a few KB per load.
   const { boot } = await import(`./lib/render.mjs?v=${Date.now()}`);
   boot();
+</script>
+<script>
+  // TEMPORARY font trial. Remembers the choice on this device only.
+  (() => {
+    const pick = document.getElementById('fontpick');
+    const set = (v) => {
+      document.documentElement.dataset.font = v;
+      pick.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.font === v)));
+      try { localStorage.setItem('ctb-font', v); } catch {}
+    };
+    let saved = '';
+    try { saved = localStorage.getItem('ctb-font') || ''; } catch {}
+    set(saved);
+    pick.addEventListener('click', (e) => {
+      const b = e.target.closest('button');
+      if (b) set(b.dataset.font);
+    });
+  })();
 </script>
 </body>
 </html>
