@@ -83,6 +83,31 @@ Two things the file cannot check itself, so the page does, quietly, under
 Attendance: player goals that do not add up to the team's score, and ids that
 appear in no squad row. Both are typos.
 
+### Photos, and what is public
+
+This repository and the site it publishes are **public**. Making the repository
+private would not change that: GitHub serves Pages publicly whatever the
+repository's visibility, and private Pages exist only on Enterprise Cloud. So a
+photo committed here is a face on the open internet beside a first name.
+
+Photos are therefore **opt-in**. Leave `photo` empty and that player renders as a
+silhouette; put `no` if they have been asked and said no, so nobody asks twice.
+Only fill in a filename for someone who has agreed, and tell them what they are
+agreeing to.
+
+Removal is the part worth understanding before you collect any. Deleting the file
+and committing removes it from the site, but the image stays in the repository's
+history and anyone who has cloned the repo keeps it. Taking a photo out properly
+means rewriting the commit that added it and force-pushing. It is doable — ask
+and it can be done in a few minutes — but it is not the one-line fix people
+expect, which is the real reason to only add a photo once someone has said yes.
+
+If the team would rather nothing were public at all, the site can move behind a
+login: Cloudflare Pages deploying from this repo with Cloudflare Access in front
+is free for up to 50 users and makes the whole dashboard team-only. That is a
+bigger change than this file, but it is the only option that actually makes the
+data non-public.
+
 ## Working on it locally
 
 `index.html` loads ES modules and fetches the CSVs, so **opening the file
