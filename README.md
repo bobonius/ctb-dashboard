@@ -121,7 +121,8 @@ committed from somewhere else.
 ## Layout
 
 ```
-index.html               shell only, no logic and no data
+index.html               shell only: no styles, no logic, no data
+lib/app.css              every style on the page
 lib/league.mjs           the league engine
 lib/render.mjs           everything that touches the DOM
 lib/csv.mjs              CSV reader
@@ -182,13 +183,21 @@ group holds rows 1-8, the bottom group rows 9-16 — so the blue line is the one
 thing nobody can cross, which is the whole point of the season. A node's number
 is its row in that chart; the tooltip gives the rank within the group.
 
-### Why the modules carry a `?v=` stamp
+### Why the stylesheet and the modules carry a `?v=` stamp
 
-GitHub Pages caches `.mjs` for ten minutes. Without the stamp a deploy can leave
-a stale `lib/render.mjs` running against a fresh `index.html`, which fails in
-whatever way the two versions happen to disagree. `index.html` stamps the entry
-module with a timestamp and it rides through `import.meta.url` into the rest, so
-the whole module graph is always from one deploy.
+GitHub Pages caches every file for ten minutes. Without the stamp a deploy can
+leave a stale `lib/render.mjs` running against a fresh `index.html`, or fresh
+markup rendering against last deploy's `lib/app.css` — which looks like a bug
+and is not one. `index.html` is a shell that holds nothing but a timestamp: it
+loads `lib/app.css` and the entry module under the same stamp, and the stamp
+rides through `import.meta.url` into the rest of the modules. Styles, icons and
+logic therefore always come from one deploy.
+
+The icon shapes live in `lib/render.mjs` and are injected at boot for the same
+reason — they change with the markup that uses them, so they ride the stamp too.
+
+The only CSS left in `index.html` is a few lines of background and font, enough
+to stop a flash of unstyled text while the real stylesheet loads.
 
 ## Deliberately not done
 
