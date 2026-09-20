@@ -3,6 +3,7 @@
 # bottom, and ids from 1001 up so nothing ever collides with appearances.csv.
 # Lines starting with # are ignored by the page.
 id,date,played_on,time,field,home,away,home_score,away_score,phase,group
+## Gameweek 1:
 1,2026-09-14,2026-09-14,19:00,Hockey Field 1A,Al-Cohol,Zware Jongens,1,2,1,
 2,2026-09-14,2026-09-14,19:00,Hockey Field 1B,Ampel 2,VVvTP – A,0,0,1,
 3,2026-09-14,2026-09-14,19:00,Hockey Field 2A,VV De Benenbrekers,VVGSD,6,2,1,
@@ -11,6 +12,7 @@ id,date,played_on,time,field,home,away,home_score,away_score,phase,group
 6,2026-09-14,2026-09-14,19:00,Football Field 1B,DHL dreamteam,De Raafschap,10,3,1,
 7,2026-09-14,,19:00,Football Field 2A,DreamTeamTeam,Natte Honden,,,1,
 8,2026-09-14,2026-09-14,19:00,Football Field 2B,Jiyan,MTT Gunners,3,1,1,
+## Gameweek 2:
 9,2026-09-21,,19:00,Hockey Field 2A,VVvTP – A,Al-Cohol,,,1,
 10,2026-09-21,,19:00,Hockey Field 1B,VVGSD,Zware Jongens,,,1,
 11,2026-09-21,,19:00,Hockey Field 1A,De uitgelootgieters,Ampel 2,,,1,
@@ -19,6 +21,7 @@ id,date,played_on,time,field,home,away,home_score,away_score,phase,group
 14,2026-09-21,,19:00,Football Field 1B,Natte Honden,Club Tower Brugge,,,1,
 15,2026-09-21,,19:00,Football Field 2A,MTT Gunners,DHL dreamteam,,,1,
 16,2026-09-21,,19:00,Football Field 2B,Jiyan,DreamTeamTeam,,,1,
+## Gameweek 3:
 17,2026-09-28,,19:00,Hockey Field 2B,Al-Cohol,VVGSD,,,1,
 18,2026-09-28,,19:00,Football Field 2B,VVvTP – A,De uitgelootgieters,,,1,
 19,2026-09-28,,19:00,Hockey Field 2A,Zware Jongens,Team Tesla,,,1,
@@ -27,6 +30,7 @@ id,date,played_on,time,field,home,away,home_score,away_score,phase,group
 22,2026-09-28,,19:00,Hockey Field 1B,Booterbal,MTT Gunners,,,1,
 23,2026-09-28,,19:00,Football Field 1B,Club Tower Brugge,Jiyan,,,1,
 24,2026-09-28,,19:00,Football Field 1A,DHL dreamteam,DreamTeamTeam,,,1,
+## Gameweek 4:
 25,2026-10-05,,19:00,Hockey Field 1B,De uitgelootgieters,Al-Cohol,,,1,
 26,2026-10-05,,19:00,Hockey Field 1A,Team Tesla,VVGSD,,,1,
 27,2026-10-05,,19:00,Hockey Field 2B,De Raafschap,VVvTP – A,,,1,
