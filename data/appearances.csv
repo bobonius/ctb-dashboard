@@ -10,4 +10,4 @@
 #   5,"Tom,Stefan,Dani","Tom:2,Dani","Stefan"
 fixture_id,squad,goals,assists,formation
 5,"Bob,Tom,Marlo,Loek,Odin,Dani,Jesse,Stefan,Twan",,,"GK:Bob,CB:Tom,CB:Marlo,CM:Loek,LM:Odin,RM:Dani,ST:Jesse,BENCH:Stefan,BENCH:Twan"
-14,,,,"GK:Bob,CB:Tom,CB:Marlo,CM:Loek,LM:Odin,RM:Dani,ST:Jesse,BENCH:Stefan,BENCH:Twan"
+14,,,,"GK:Bob,CB:Stefan,CB:Marlo,CM:Jesse,LM:Odin,RM:Dani,ST:Loek,BENCH:Tom,BENCH:Chris"
