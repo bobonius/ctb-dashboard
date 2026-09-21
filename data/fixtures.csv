@@ -10,7 +10,7 @@ id,date,played_on,time,field,home,away,home_score,away_score,phase,group
 4,2026-09-14,2026-09-14,19:00,Hockey Field 2B,Booterbal,De uitgelootgieters,1,11,1,
 5,2026-09-14,2026-09-14,19:00,Football Field 1A,Club Tower Brugge,Team Tesla,0,0,1,
 6,2026-09-14,2026-09-14,19:00,Football Field 1B,DHL dreamteam,De Raafschap,10,3,1,
-7,2026-09-14,,19:00,Football Field 2A,DreamTeamTeam,Natte Honden,,,1,
+7,2026-09-14,,19:00,Football Field 2A,DreamTeamTeam,Natte Honden,1,5,1,
 8,2026-09-14,2026-09-14,19:00,Football Field 2B,Jiyan,MTT Gunners,3,1,1,
 ## Gameweek 2:
 9,2026-09-21,,19:00,Hockey Field 2A,VVvTP – A,Al-Cohol,,,1,
