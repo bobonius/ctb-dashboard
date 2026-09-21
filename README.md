@@ -133,7 +133,8 @@ committed from somewhere else.
 
 ```
 index.html               shell only: no styles, no logic, no data
-lib/app.css              every style on the page
+lib/app.css              every style on the page: structure first, then the
+                         broadcast layer that gives it its look
 lib/league.mjs           the league engine
 lib/render.mjs           everything that touches the DOM
 lib/csv.mjs              CSV reader

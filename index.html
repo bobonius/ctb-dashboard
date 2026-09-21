@@ -14,14 +14,6 @@
   html,body{margin:0;padding:0;background:#0b0c10;color:#eef2f7;
     font-family:"Inter",ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
 </style>
-<script>
-  // Read before anything paints: a skin applied after first paint is a flash.
-  try {
-    const s = localStorage.getItem('ctb-skin');
-    if (s === 'bold' || s === 'terrace') document.documentElement.dataset.skin = s;
-  }
-  catch (e) { /* private window, no storage — classic is the right fallback */ }
-</script>
 </head>
 <body>
 <div id="app"><div class="wrap"><p style="padding:40px 20px;color:#8c97a8">Loading the season…</p></div></div>
@@ -31,15 +23,10 @@
   // against a stale stylesheet, which looks like a bug and is not one.
   const v = `?v=${Date.now()}`;
   await new Promise((done) => {
-    const sheets = [`lib/app.css${v}`, `lib/bold.css${v}`, `lib/terrace.css${v}`];
-    let left = sheets.length;
-    const each = () => { if (--left === 0) done(); };
-    // the skins only ever add, and they must win the cascade, so they load after
-    for (const href of sheets) {
-      const link = Object.assign(document.createElement('link'), { rel: 'stylesheet', href });
-      link.onload = link.onerror = each;
-      document.head.appendChild(link);
-    }
+    const link = Object.assign(document.createElement('link'),
+      { rel: 'stylesheet', href: `lib/app.css${v}` });
+    link.onload = link.onerror = done;
+    document.head.appendChild(link);
   });
   const { boot } = await import(`./lib/render.mjs${v}`);
   boot();
