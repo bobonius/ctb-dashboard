@@ -45,6 +45,27 @@
   letter-spacing:.11em;text-transform:uppercase;color:var(--sky);
 }
 
+/* ---------- the crawl, broadcast cut ---------- */
+
+[data-skin="bold"] .ticker{
+  background:linear-gradient(97deg,var(--jet),var(--blue-deep) 70%,var(--blue));
+  border-bottom:0;box-shadow:inset 0 -3px 0 var(--flood);
+}
+[data-skin="bold"] .tk{animation-duration:48s}
+[data-skin="bold"] .tk .it{
+  position:relative;z-index:0;color:rgba(255,255,255,.72);box-shadow:none;
+  font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:8px 20px;
+}
+[data-skin="bold"] .tk .it i{color:rgba(255,255,255,.5)}
+[data-skin="bold"] .tk .it b{color:#fff}
+[data-skin="bold"] .tk .it.nx{color:var(--jet);font-weight:800}
+[data-skin="bold"] .tk .it.nx i{color:var(--jet)}
+[data-skin="bold"] .tk .it.nx::before{
+  content:"";position:absolute;inset:0 6px;z-index:-1;transform:skewX(var(--sk));background:var(--flood);
+}
+[data-skin="bold"] .tk .it.up{color:var(--sky)}
+[data-skin="bold"] .tk .it.up i{color:var(--sky);opacity:.8}
+
 /* ---------- hero: the big one ---------- */
 
 [data-skin="bold"] .hero{padding:40px 0 38px}

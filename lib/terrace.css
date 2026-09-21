@@ -40,21 +40,19 @@
 
 /* ---------- the crawl ---------- */
 
-.ticker{display:none}
-[data-skin="terrace"] .ticker{
-  display:block;margin:0 -20px;overflow:hidden;background:var(--flood);
-  border-bottom:5px solid var(--ink);
-}
-[data-skin="terrace"] .tk{
-  display:inline-flex;white-space:nowrap;animation:tz-crawl 42s linear infinite;
-}
+[data-skin="terrace"] .ticker{background:var(--flood);border-bottom:5px solid var(--ink)}
+[data-skin="terrace"] .tk{animation-duration:46s}
 [data-skin="terrace"] .tk .it{
-  padding:7px 20px;font-size:12px;font-weight:800;text-transform:uppercase;
-  letter-spacing:.08em;color:var(--jet);
+  padding:7px 18px;font-size:12px;font-weight:800;text-transform:uppercase;
+  letter-spacing:.08em;color:var(--jet);box-shadow:inset 2px 0 0 rgba(5,6,10,.35);
 }
-[data-skin="terrace"] .tk .it b{font-weight:900}
-[data-skin="terrace"] .tk .it.us{background:var(--jet);color:var(--flood)}
-[data-skin="terrace"] .tk .it.nx{background:var(--blue);color:#fff}
+[data-skin="terrace"] .tk .it i{color:var(--jet);opacity:.65;font-weight:900}
+[data-skin="terrace"] .tk .it b,[data-skin="terrace"] .tk .it b.w,
+[data-skin="terrace"] .tk .it b.l{font-weight:900;color:var(--jet)}
+[data-skin="terrace"] .tk .it.nx{background:var(--jet);color:var(--flood)}
+[data-skin="terrace"] .tk .it.nx i{color:var(--flood);opacity:1}
+[data-skin="terrace"] .tk .it.up{background:var(--blue);color:#fff}
+[data-skin="terrace"] .tk .it.up i{color:#fff;opacity:.8}
 
 /* ---------- hero: the name, cropped by the page ---------- */
 
@@ -208,7 +206,6 @@
 [data-skin="terrace"] .skin button{color:var(--ink);font-weight:900}
 [data-skin="terrace"] .skin button[aria-pressed="true"]{background:var(--flood);color:var(--jet)}
 
-@keyframes tz-crawl{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @keyframes tz-grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @keyframes tz-slam{from{opacity:0;transform:translateY(-10px) scaleY(.9)}to{opacity:1;transform:none}}
 @keyframes tz-reveal{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0)}}
@@ -216,7 +213,7 @@
   100%{opacity:1;transform:translateX(-50%) scale(1) rotate(0)}}
 
 @media(max-width:600px){
-  [data-skin="terrace"] .mast,[data-skin="terrace"] .ticker{margin:0 -15px}
+  [data-skin="terrace"] .mast{margin:0 -15px}
   [data-skin="terrace"] .mast{padding:14px 15px}
   [data-skin="terrace"] section h2{font-size:20px;box-shadow:5px 5px 0 var(--blue)}
   [data-skin="terrace"] .opp{font-size:clamp(38px,14vw,60px)}

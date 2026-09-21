@@ -318,3 +318,29 @@ section h2{padding-left:11px;border-left:3px solid var(--blue)}
   .wall{grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:16px 10px}
   .wall .ph{width:62px;height:62px}
 }
+
+/* --- the crawl ---
+   Our own season, in date order, looping. Three states, three colours: played
+   is quiet, next is gold, still-to-come is blue. It runs in every skin; the
+   skins only change its dress. Hover holds it still so a result can be read. */
+.ticker{margin:0 -20px;overflow:hidden;background:var(--panel);
+  border-bottom:1px solid var(--line)}
+.tk{display:inline-flex;white-space:nowrap;animation:tk-crawl 64s linear infinite}
+.ticker:hover .tk,.ticker:focus-within .tk{animation-play-state:paused}
+.tk .it{display:inline-flex;align-items:baseline;gap:7px;padding:7px 17px;font-size:12.5px;
+  white-space:nowrap;color:var(--mute);box-shadow:inset 1px 0 0 var(--line)}
+.tk .it i{font-style:normal;font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--mute);opacity:.8}
+.tk .it b{font-weight:700;color:var(--chalk)}
+.tk .it b.w{color:var(--grass)}
+.tk .it b.l{color:var(--brick)}
+.tk .it.nx{color:var(--flood);font-weight:600}
+.tk .it.nx i{color:var(--flood);font-weight:700;opacity:1}
+.tk .it.up{color:var(--sky)}
+.tk .it.up i{color:var(--sky);opacity:.75}
+@keyframes tk-crawl{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(max-width:600px){.ticker{margin:0 -15px}.tk .it{padding:6px 13px;font-size:12px}}
+@media(prefers-reduced-motion:reduce){
+  .tk{white-space:normal;flex-wrap:wrap}
+  .tk .it:nth-child(n+40){display:none}
+}
