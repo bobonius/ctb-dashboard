@@ -47,17 +47,24 @@ One line per match, not per player:
 
 ```
 fixture_id,squad,goals,assists
-5,"tom,stefan,niels,bob","tom:2,niels","stefan"
+5,Tom;Stefan;Niels;Bob,Tom:2;Niels,Stefan
 ```
 
 `squad` is everyone who played. `goals` and `assists` are ids, `:n` for more
-than one. Quote any field with a comma in it. A scorer missing from `squad` is
-taken to have played, because you cannot score in a match you were not in.
+than one. A scorer missing from `squad` is taken to have played, because you
+cannot score in a match you were not in.
+
+**Separate ids with a semicolon.** The commas in that line are the column
+separators; the semicolons are yours. A row written this way contains no comma
+inside a field, so it needs no quotes at all — which is what makes it typeable
+in the GitHub app on a phone, where the keyboard curls every `"` you type into
+a `"` and quietly breaks the row. Commas inside a quoted field still parse, so
+rows written the old way keep working.
 
 `formation` is the starting eleven, written **before** the match:
 
 ```
-14,,,,"GK:Bob,CB:Tom,CB:Marlo,CM:Loek,LM:Odin,RM:Dani,ST:Jesse,BENCH:Stefan"
+14,,,,GK:Bob;CB:Tom;CB:Marlo;CM:Loek;LM:Odin;RM:Dani;ST:Jesse;BENCH:Stefan
 ```
 
 It lives in its own column rather than inside `squad`, because `squad` means who
@@ -65,7 +72,7 @@ played — a plan written there would hand everyone an appearance for a match th
 has not kicked off. Create the row before the game with only the formation,
 complete it afterwards with squad, goals and assists.
 
-Labels repeat freely (`CB:Tom,CB:Marlo`). Anything starting with L or R is
+Labels repeat freely (`CB:Tom;CB:Marlo`). Anything starting with L or R is
 placed on that side of its line; the rest keep the order you wrote. GK, LB, CB,
 RB, LWB, RWB, SW, CDM, DM, LM, CM, RM, CAM, AM, LW, RW, ST, CF and SS know where
 they belong on the pitch, `BENCH` goes to the strip underneath, and a label that

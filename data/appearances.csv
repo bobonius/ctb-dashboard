@@ -1,13 +1,17 @@
 # One line per match, not per player.
 #   fixture_id  the id from fixtures.csv
-#   squad       everyone who played, ids separated by commas
+#   squad       everyone who played, ids separated by semicolons
 #   goals       ids of scorers, id:2 for a brace. A scorer not in squad is added to it.
 #   assists     same shape
 #   formation   the starting eleven, written BEFORE the match: LABEL:id pairs,
-#               e.g. GK:Bob,CB:Tom,CB:Marlo,CM:Loek,ST:Jesse,BENCH:Stefan
+#               e.g. GK:Bob;CB:Tom;CB:Marlo;CM:Loek;ST:Jesse;BENCH:Stefan
 #               Labels repeat; order within a line runs left to right.
-# Quote any field that contains a comma. Example:
-#   5,"Tom,Stefan,Dani","Tom:2,Dani","Stefan"
+# Separate ids with a SEMICOLON, never a comma: the commas are the column
+# separators. A row full of semicolons needs no quotes, which is what makes it
+# typeable on a phone. Example:
+#   5,Tom;Stefan;Dani,Tom:2;Dani,Stefan,GK:Bob;CB:Tom
+# Commas inside a quoted field still parse, so old rows keep working.
+
 fixture_id,squad,goals,assists,formation
-5,"Bob,Tom,Marlo,Loek,Odin,Dani,Jesse,Stefan,Twan",,,"GK:Bob,CB:Tom,CB:Marlo,CM:Loek,LM:Odin,RM:Dani,ST:Jesse,BENCH:Stefan,BENCH:Twan"
-14,,,,"GK:Bob,CB:Stefan,CB:Marlo,CM:Jesse,LM:Odin,RM:Dani,ST:Loek,BENCH:Tom,BENCH:Chris"
+5,Bob;Tom;Marlo;Loek;Odin;Dani;Jesse;Stefan;Twan,,,GK:Bob;CB:Tom;CB:Marlo;CM:Loek;LM:Odin;RM:Dani;ST:Jesse;BENCH:Stefan;BENCH:Twan
+14,,,,GK:Bob;CB:Stefan;CB:Marlo;CM:Jesse;LM:Odin;RM:Dani;ST:Loek;BENCH:Tom;BENCH:Chris
