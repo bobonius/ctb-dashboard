@@ -15,5 +15,6 @@
 # Commas inside a quoted field still parse, so old rows keep working.
 
 fixture_id,squad,goals,assists,motm,formation
-5,Bob;Tom;Marlo;Loek;Odin;Dani;Jesse;Stefan;Twan,,,Bob,GK:Bob;CB:Tom;CB:Marlo;CM:Loek;LM:Odin;RM:Dani;ST:Jesse;BENCH:Stefan;BENCH:Twan
-14,Odin;Chris;Bob;Stefan;Marlo;Jesse;Dani;Loek;Tom,Odin:2;Jesse:2;Dani:1;Chris:1；Marlo：1,Marlo:1;Jesse:2;Dani:2;Odin:1,Odin,GK:Bob;CB:Stefan;CB:Marlo;CM:Jesse;LM:Odin;RM:Dani;ST:Loek;BENCH:Tom;BENCH:Chris
+5,Bob;Tom;Marlo;Loek;Odin;Dani;Jesse;Stefan;Twan,,,Bob,GK:Bob;CB:Tom;CB:Marlo;M:Loek;LM:Odin;RM:Dani;ST:Jesse;BENCH:Stefan;BENCH:Twan
+Odin:2;Jesse:2;Dani:1;Chris:1;Marlo:1
+
