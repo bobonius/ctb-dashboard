@@ -14,6 +14,11 @@
   html,body{margin:0;padding:0;background:#0b0c10;color:#eef2f7;
     font-family:"Inter",ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
 </style>
+<script>
+  // Read before anything paints: a skin applied after first paint is a flash.
+  try { if (localStorage.getItem('ctb-skin') === 'bold') document.documentElement.dataset.skin = 'bold'; }
+  catch (e) { /* private window, no storage — classic is the right fallback */ }
+</script>
 </head>
 <body>
 <div id="app"><div class="wrap"><p style="padding:40px 20px;color:#8c97a8">Loading the season…</p></div></div>
@@ -23,10 +28,14 @@
   // against a stale stylesheet, which looks like a bug and is not one.
   const v = `?v=${Date.now()}`;
   await new Promise((done) => {
-    const link = Object.assign(document.createElement('link'),
-      { rel: 'stylesheet', href: `lib/app.css${v}` });
-    link.onload = link.onerror = done;
-    document.head.appendChild(link);
+    let left = 2;
+    const each = () => { if (--left === 0) done(); };
+    // bold.css only ever adds, and it must win the cascade, so it loads second
+    for (const href of [`lib/app.css${v}`, `lib/bold.css${v}`]) {
+      const link = Object.assign(document.createElement('link'), { rel: 'stylesheet', href });
+      link.onload = link.onerror = each;
+      document.head.appendChild(link);
+    }
   });
   const { boot } = await import(`./lib/render.mjs${v}`);
   boot();
