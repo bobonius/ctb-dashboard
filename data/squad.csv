@@ -9,10 +9,10 @@
 id,name,active,photo
 Bob,Bob,true,bob.webp
 Tom,Tom,true
-Marlo,Marlo,true
-Loek,Loek,true
+Marlo,Marlo,true,marlo.webp
+Loek,Loek,true,loek.webp
 Odin,Odin,true,odin.webp
-Dani,Dani,true
+Dani,Dani,true,dani.webp
 Jesse,Jesse,true
 Stefan,Stefan,true
 Twan,Twan,true
