@@ -71,7 +71,10 @@ section .hint{color:var(--mute);font-size:13px;margin:0 0 18px;max-width:64ch}
 .tbl th:nth-child(1),.tbl th:nth-child(2){text-align:left}
 .tbl th:nth-child(1){padding-left:9px}
 .tbl td{padding:8px 0;border-bottom:1px solid rgba(46,54,68,.45);text-align:right}
-.tbl td:nth-child(1){color:var(--mute);text-align:left;width:34px;padding-left:9px}
+/* The rank column. Scoped to team rows on purpose: an expanded panel is a row
+   with a single td, which is :nth-child(1) too, and would otherwise inherit the
+   rank column's width and dimming. */
+.tbl tr[data-team] td:nth-child(1){color:var(--mute);text-align:left;width:34px;padding-left:9px}
 .tbl td:nth-child(2){text-align:left;font-weight:500}
 .tbl td.pts{font-weight:700}
 .tbl tr.me td{background:rgba(232,180,58,.09)}
@@ -453,15 +456,18 @@ section h2::before{
   text-transform:uppercase;letter-spacing:.08em;font-weight:800;font-size:11px;
   color:var(--sky);border-bottom:2px solid var(--blue-deep);
 }
-.tbl td:nth-child(1){
+.tbl tr[data-team] td:nth-child(1){
   font-family:var(--display);font-weight:900;font-size:16px;color:var(--chalk);opacity:.5;
 }
 .tbl tr[data-team]{transition:transform .16s ease,background-color .16s ease}
 .tbl tr[data-team]:hover td{background:rgba(15,111,198,.16)}
 .tbl tr[data-team]:hover{transform:translateX(5px)}
-.tbl tr.me td{
-  background:linear-gradient(90deg,rgba(232,180,58,.20),rgba(232,180,58,.03) 60%);
-}
+/* The gradient belongs to the row, not to each cell: painted per td it restarts
+   at every column boundary and the row reads as a row of stripes. A collapsed
+   table paints the tr's own background behind transparent cells, which is
+   exactly one sweep across the whole row. */
+.tbl tr.me{background:linear-gradient(90deg,rgba(232,180,58,.20),rgba(232,180,58,.03) 60%)}
+.tbl tr.me td{background:none}
 .tbl tr.me td:nth-child(1){opacity:1;color:var(--flood)}
 .tbl tr.me td:nth-child(2){box-shadow:inset 4px 0 0 var(--flood);font-weight:700}
 .tbl td.pts{font-family:var(--display);font-size:17px;font-weight:900}
@@ -486,7 +492,7 @@ section h2::before{
    otherwise keep painting green text on a green bug. Deeper fills than the
    palette's own green and red, so white clears 4.5:1 on both. */
 .rows .sc.w,.rows .sc.l,.rows .sc.d{color:#fff}
-.rows .sc.w::before{background:#2f8d5f}
+.rows .sc.w::before{background:#2a7f55}
 .rows .sc.l::before{background:#c0433c}
 .rows .sc.d::before{background:var(--rank)}
 .rows .sc.tbd{color:var(--mute)}
