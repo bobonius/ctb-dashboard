@@ -293,8 +293,16 @@ section h2{padding-left:11px;border-left:3px solid var(--blue)}
 .fc img,.fc svg{width:100%;height:100%;object-fit:cover;display:block;color:var(--rank)}
 .attrow .who .fc{width:24px;height:24px;margin-right:9px}
 .attrow .who .nmt{font-weight:inherit;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.strip .sub.motm{border-color:var(--flood);color:var(--flood)}
-.strip .sub.motm .fc{width:22px;height:22px;box-shadow:inset 0 0 0 1px var(--flood)}
+/* Man of the match wears a crown wherever he is drawn: on the pitch it sits on
+   his head, on a bench pill it rides in front of his face. The dark stroke in
+   the symbol is what keeps gold legible against both grass and panel. */
+.crown{color:var(--flood);display:block}
+.chip .crown{position:absolute;left:50%;top:-13px;width:23px;height:auto;
+  transform:translateX(-50%);filter:drop-shadow(0 2px 3px rgba(0,0,0,.5));z-index:1}
+.chip.king .ph{filter:drop-shadow(0 3px 5px rgba(0,0,0,.55)) drop-shadow(0 0 3px rgba(232,180,58,.5))}
+.chip.king .nm{color:var(--flood);background:rgba(5,12,8,.8)}
+.strip .sub.king{border-color:var(--flood);color:var(--flood)}
+.strip .sub.king .crown{width:15px;height:auto;flex:0 0 auto;margin-right:-2px}
 
 .wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:20px 12px;margin-top:6px}
 .wall figure{margin:0;text-align:center}
