@@ -56,13 +56,13 @@ section h2{font-family:var(--display);font-weight:700;font-size:19px;letter-spac
 section .hint{color:var(--mute);font-size:13px;margin:0 0 18px;max-width:64ch}
 
 .lb{list-style:none;margin:0;padding:0}
-.lb li{display:grid;grid-template-columns:22px 1fr auto;align-items:center;gap:12px;
+.lb li{display:grid;grid-template-columns:22px 26px 1fr auto;align-items:center;gap:12px;
   padding:9px 0;border-bottom:1px solid rgba(46,54,68,.5)}
 .lb li:last-child{border-bottom:0}
 .lb .rk{color:var(--mute);font-size:13px;text-align:right}
 .lb .nm{font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .lb .val{font-family:var(--display);font-weight:700;font-size:20px;min-width:2ch;text-align:right}
-.lb .bar{grid-column:2/-1;height:3px;background:var(--flood);border-radius:2px;margin-top:-4px;opacity:.75}
+.lb .bar{grid-column:3/-1;height:3px;background:var(--flood);border-radius:2px;margin-top:-4px;opacity:.75}
 .lb li.lead .val{color:var(--flood)}
 .lb .sec{color:var(--mute);font-size:13px;font-weight:400;margin-left:8px}
 
@@ -201,13 +201,14 @@ section .hint{color:var(--mute);font-size:13px;margin:0 0 18px;max-width:64ch}
 
 .attwrap{overflow-x:auto;padding-bottom:2px}
 .attgrid{min-width:min-content}
-.attrow{display:grid;grid-template-columns:118px auto 54px;align-items:center;gap:12px;
+.attrow{display:grid;grid-template-columns:152px auto 54px;align-items:center;gap:12px;
   padding:6px 0;border-bottom:1px solid rgba(46,54,68,.45)}
 .attrow:last-child{border-bottom:0}
 .attrow{cursor:pointer}
 .attrow:hover .who{color:var(--sky)}
 .attrow:focus-visible{outline:2px solid var(--flood);outline-offset:-2px}
 .attrow .who{position:sticky;left:0;background:var(--pitch);padding-right:6px;font-size:14.5px;
+  display:flex;align-items:center;
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap;z-index:1}
 .attrow .who.gone{color:var(--mute)}
 .attrow .cells{display:flex;gap:3px}
@@ -283,3 +284,29 @@ section h2{padding-left:11px;border-left:3px solid var(--blue)}
 .form .D{background:var(--blue);color:#fff}
 .empty{border-color:var(--line)}
 @media(max-width:600px){.hero::before{left:56%;background:repeating-linear-gradient(115deg,rgba(15,111,198,.28) 0 22px,rgba(5,6,10,0) 22px 44px)}}
+
+/* --- faces --- */
+/* One round frame, three sizes. A silhouette and a photo must occupy exactly
+   the same box or a half-photographed squad stops lining up. */
+.fc{flex:0 0 auto;display:block;width:26px;height:26px;border-radius:50%;overflow:hidden;
+  background:var(--panel-2);box-shadow:inset 0 0 0 1px var(--line)}
+.fc img,.fc svg{width:100%;height:100%;object-fit:cover;display:block;color:var(--rank)}
+.attrow .who .fc{width:24px;height:24px;margin-right:9px}
+.attrow .who .nmt{font-weight:inherit;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.strip .sub.motm{border-color:var(--flood);color:var(--flood)}
+.strip .sub.motm .fc{width:22px;height:22px;box-shadow:inset 0 0 0 1px var(--flood)}
+
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:20px 12px;margin-top:6px}
+.wall figure{margin:0;text-align:center}
+.wall .ph{display:block;width:74px;height:74px;margin:0 auto 9px;border-radius:50%;overflow:hidden;
+  background:var(--panel-2);box-shadow:inset 0 0 0 1px var(--line)}
+.wall .ph img,.wall .ph svg{width:100%;height:100%;object-fit:cover;display:block;color:var(--rank)}
+.wall figcaption{font-size:14px;font-weight:500}
+.wall figure.gone{opacity:.42}
+.wall figure.gone figcaption{color:var(--mute)}
+@media(max-width:600px){
+  .attrow{grid-template-columns:136px auto 50px}
+  .attrow .who .fc{width:22px;height:22px;margin-right:7px}
+  .wall{grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:16px 10px}
+  .wall .ph{width:62px;height:62px}
+}

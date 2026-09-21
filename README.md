@@ -46,8 +46,8 @@ the match is still ahead of you, whatever its date says.
 One line per match, not per player:
 
 ```
-fixture_id,squad,goals,assists
-5,Tom;Stefan;Niels;Bob,Tom:2;Niels,Stefan
+fixture_id,squad,goals,assists,motm,formation
+5,Tom;Stefan;Niels;Bob,Tom:2;Niels,Stefan,Tom,GK:Bob;CB:Tom
 ```
 
 `squad` is everyone who played. `goals` and `assists` are ids, `:n` for more
@@ -61,10 +61,14 @@ in the GitHub app on a phone, where the keyboard curls every `"` you type into
 a `"` and quietly breaks the row. Commas inside a quoted field still parse, so
 rows written the old way keep working.
 
+`motm` is man of the match: one id, optional. It feeds no total and settles no
+argument — it just puts that face under the match with a gold ring. Leave it
+empty and nothing is rendered.
+
 `formation` is the starting eleven, written **before** the match:
 
 ```
-14,,,,GK:Bob;CB:Tom;CB:Marlo;CM:Loek;LM:Odin;RM:Dani;ST:Jesse;BENCH:Stefan
+14,,,,,GK:Bob;CB:Tom;CB:Marlo;CM:Loek;LM:Odin;RM:Dani;ST:Jesse;BENCH:Stefan
 ```
 
 It lives in its own column rather than inside `squad`, because `squad` means who
@@ -135,7 +139,7 @@ lib/render.mjs           everything that touches the DOM
 lib/csv.mjs              CSV reader
 data/meta.json           team, season, venue, message for the group
 data/fixtures.csv        the season: one row per match, all teams
-data/squad.csv           id, name, active
+data/squad.csv           id, name, active, photo
 data/appearances.csv     one line per match, not per player
 ```
 
