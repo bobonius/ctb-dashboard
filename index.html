@@ -16,7 +16,10 @@
 </style>
 <script>
   // Read before anything paints: a skin applied after first paint is a flash.
-  try { if (localStorage.getItem('ctb-skin') === 'bold') document.documentElement.dataset.skin = 'bold'; }
+  try {
+    const s = localStorage.getItem('ctb-skin');
+    if (s === 'bold' || s === 'terrace') document.documentElement.dataset.skin = s;
+  }
   catch (e) { /* private window, no storage — classic is the right fallback */ }
 </script>
 </head>
@@ -28,10 +31,11 @@
   // against a stale stylesheet, which looks like a bug and is not one.
   const v = `?v=${Date.now()}`;
   await new Promise((done) => {
-    let left = 2;
+    const sheets = [`lib/app.css${v}`, `lib/bold.css${v}`, `lib/terrace.css${v}`];
+    let left = sheets.length;
     const each = () => { if (--left === 0) done(); };
-    // bold.css only ever adds, and it must win the cascade, so it loads second
-    for (const href of [`lib/app.css${v}`, `lib/bold.css${v}`]) {
+    // the skins only ever add, and they must win the cascade, so they load after
+    for (const href of sheets) {
       const link = Object.assign(document.createElement('link'), { rel: 'stylesheet', href });
       link.onload = link.onerror = each;
       document.head.appendChild(link);
