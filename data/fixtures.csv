@@ -2,7 +2,7 @@
 # Phase 2 goes below this block after the winter break, with phase=2, group=top or
 # bottom, and ids from 1001 up so nothing ever collides with appearances.csv.
 # Lines starting with # are ignored by the page.
-id,date,played_on,time,field,home,away,home_score,away_score,phase,group
+id,date,played_on,time,field,home,away,home_score,away_score,phase,group,note
 ## Gameweek 1:
 1,2026-09-14,2026-09-14,19:00,Hockey Field 1A,Al-Cohol,Zware Jongens,1,2,1,
 2,2026-09-14,2026-09-14,19:00,Hockey Field 1B,Ampel 2,VVvTP – A,0,0,1,

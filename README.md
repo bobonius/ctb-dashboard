@@ -17,13 +17,13 @@ After the matches, open `data/fixtures.csv` and type the scores into
 your own match. Commit. The page recomputes the table, the boards, the chart and
 the attendance grid from those rows on the next load.
 
-The published page is read-only on purpose: it renders the data and offers no way
-to change it, so there is nothing for a visitor to press.
+The published page is read-only on purpose: a visitor can open a team, a player
+or a match to look closer, but nothing on the page can change the data.
 
 ### fixtures.csv
 
 ```
-id,date,played_on,time,field,home,away,home_score,away_score,note
+id,date,played_on,time,field,home,away,home_score,away_score,phase,group,note
 ```
 
 `id` is what lets you rename a team or move a match without anything breaking —
@@ -36,7 +36,16 @@ as phase 1, so the file read the same before the split existed.
 
 `note` is free text and optional. Whatever you put there shows under that match
 in *Our season*, so it is the place for "short two players", "moved to 1A",
-"Sander's last game". Leave it empty and nothing is rendered.
+"Sander's last game". It is the last column, after `group`, so a phase-1 row
+with a note ends in two commas and then the text:
+
+```
+14,2026-09-21,,19:00,Football Field 1B,Natte Honden,Club Tower Brugge,2,7,1,,Short two players and still won
+```
+
+Rows without a note simply stop at `group` — the missing cell reads as empty. A
+note is the one place a comma can sneak into a cell; if it does, put the whole
+note in double quotes, or the text after the comma is silently dropped.
 
 A row counts as played once both score cells have a number. An empty pair means
 the match is still ahead of you, whatever its date says.
@@ -142,6 +151,7 @@ data/meta.json           team, season, venue, message for the group
 data/fixtures.csv        the season: one row per match, all teams
 data/squad.csv           id, name, active, photo
 data/appearances.csv     one line per match, not per player
+data/faces/              opt-in photos, 240×240 WebP cut-outs, named in squad.csv
 ```
 
 ### The one rule

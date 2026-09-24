@@ -6,7 +6,13 @@
 <title>Club Tower Brugge — MEL 26/27</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Exactly the faces the page renders, measured from its computed styles:
+     Fraunces 700-900 plus the 900 italic of the opponent's name, Inter 400-800
+     plus italic 700-800 for the masthead and the position badges. Anything not
+     loaded here the browser fakes by slanting or smearing the nearest face.
+     Two links, so a mistake in one family's axes cannot take down the other. -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700..900;1,9..144,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400..800;1,700..800&display=swap" rel="stylesheet">
 <style>
   /* Only enough to stop a flash of unstyled text. The real stylesheet arrives
      stamped, below, so a cached copy of this file can never disagree with it. */
