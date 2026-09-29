@@ -57,8 +57,9 @@ const mug = (id, cls) => {
   return u ? `<img class="${cls}" src="${u}">` : `<span class="${cls} sil"></span>`;
 };
 
-// Right-hand side: the line-up on grass if one is logged, otherwise the faces
-// we have, because a wall of teammates is the next most recognisable thing.
+// Right-hand side: the line-up on grass if one is logged, and nothing otherwise.
+// Faces with no formation read as a team selection that nobody made, so until
+// there is a line-up the stripes and the opponent carry the card alone.
 let side = '';
 const spots = next && formations.get(next.id);
 if (spots) {
@@ -70,10 +71,6 @@ if (spots) {
   }).join('')).join('');
   side = `<div class="pitch"><i class="half"></i><i class="circle"></i><i class="box"></i><i class="box top"></i>${chips}</div>
     ${bench.length ? `<div class="bench">Bench · ${bench.map((b) => esc(nameOf(b.player))).join(', ')}</div>` : ''}`;
-} else {
-  const withPhoto = squad.filter((s) => s.active && faceUri(s.id));
-  side = `<div class="wall">${withPhoto.slice(0, 9).map((s) => `<figure>${mug(s.id, 'wf')}
-    <figcaption>${esc(s.name)}</figcaption></figure>`).join('')}</div>`;
 }
 
 const opp = next ? (next.home === me ? next.away : next.home) : 'Season complete';
@@ -112,10 +109,6 @@ body::before{content:"";position:absolute;inset:0 0 auto 0;height:10px;backgroun
 .chip .nm{margin-top:4px;background:rgba(5,12,8,.72);padding:3px 10px;font-size:16px;font-weight:700}
 .sil{display:block;background:radial-gradient(circle at 50% 38%,#5b6a83 0 17%,transparent 18%),radial-gradient(ellipse 36% 30% at 50% 100%,#5b6a83 0 98%,transparent 100%) #2b3444}
 .bench{margin-top:12px;font-size:18px;color:#8c97a8;font-weight:700}
-.wall{display:grid;grid-template-columns:repeat(3,1fr);gap:22px 16px;margin-top:40px}
-.wall figure{text-align:center}
-.wall .wf{width:104px;height:104px;border-radius:50%;object-fit:cover;background:#1c212a;box-shadow:inset 0 0 0 2px #2e3644}
-.wall figcaption{margin-top:6px;font-weight:700;font-size:18px}
 </style></head><body><div class="stripes"></div>
 <div class="l">
   <div class="team"><i class="crest"></i>${esc(me)}</div>

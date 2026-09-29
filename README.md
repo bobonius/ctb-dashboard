@@ -19,7 +19,7 @@ on their own; Google re-reads the feed roughly once or twice a day.
 
 It also runs `scripts/build-card.mjs`, which renders `card.png` — the poster you
 see when the site link is pasted into WhatsApp: next opponent, date, pitch, the
-line-up if one is logged (otherwise the faces you have), your position and the
+line-up if one is logged (nothing there otherwise), your position and the
 last result — and writes the preview tags into the published `index.html`. The
 card is rebuilt on every push, so push after logging a match or a line-up.
 WhatsApp keeps a preview for a link it has already seen; to force a fresh one,
