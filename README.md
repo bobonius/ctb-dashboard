@@ -17,6 +17,14 @@ code the page uses, and it commits nothing back — so your local copy never fal
 behind because of it. Subscribed calendars pick up a moved match or a new score
 on their own; Google re-reads the feed roughly once or twice a day.
 
+It also runs `scripts/build-card.mjs`, which renders `card.png` — the poster you
+see when the site link is pasted into WhatsApp: next opponent, date, pitch, the
+line-up if one is logged (otherwise the faces you have), your position and the
+last result — and writes the preview tags into the published `index.html`. The
+card is rebuilt on every push, so push after logging a match or a line-up.
+WhatsApp keeps a preview for a link it has already seen; to force a fresh one,
+share the link with something on the end, e.g. `…/ctb-dashboard/?gw4`.
+
 ## The weekly routine
 
 After the matches, open `data/fixtures.csv` and type the scores into
@@ -162,7 +170,8 @@ lib/render.mjs           everything that touches the DOM
 lib/csv.mjs              CSV reader
 lib/ics.mjs              the calendar file: downloaded from the page, or built
                          as calendar.ics by scripts/build-calendar.mjs on publish
-.github/workflows/       pages.yml: publishes the site and the calendar feed
+.github/workflows/       pages.yml: publishes the site, calendar feed and preview card
+scripts/                 build-calendar.mjs and build-card.mjs, run only by that workflow
 data/meta.json           team, season, venue, message for the group
 data/fixtures.csv        the season: one row per match, all teams
 data/squad.csv           id, name, active, photo

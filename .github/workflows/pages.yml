@@ -1,4 +1,5 @@
-# Publishes the site, plus a freshly built calendar.ics, on every push to main.
+# Publishes the site, a freshly built calendar.ics and the chat preview card
+# (card.png + its <meta> tags) on every push to main.
 # It commits nothing back, so your local copy never falls behind because of it.
 # One-time setup: Settings → Pages → Source: "GitHub Actions".
 name: Publish site
@@ -24,12 +25,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - id: pages
+        uses: actions/configure-pages@v5
       - name: Assemble the site
+        env:
+          TZ: Europe/Amsterdam              # so "next up" means next up in Delft
+          CHROME_PATH: /usr/bin/google-chrome   # already on the runner; nothing to download
         run: |
           mkdir _site
           cp -r index.html lib data _site/
           node scripts/build-calendar.mjs _site/calendar.ics
-      - uses: actions/configure-pages@v5
+          # The preview card is a nice-to-have: if it ever fails, publish the site anyway.
+          npm install --no-save --no-package-lock playwright-core@1 \
+            && node scripts/build-card.mjs _site "${{ steps.pages.outputs.base_url }}/" \
+            || echo "::warning::link preview card was not built this time"
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
