@@ -1,12 +1,10 @@
-:root{
-  --pitch:#0b0c10;--panel:#14171d;--panel-2:#1c212a;--line:#2e3644;
-  --chalk:#eef2f7;--mute:#8c97a8;--flood:#e8b43a;--grass:#46b27c;--brick:#d1514a;
-  --blue:#0f6fc6;--blue-deep:#0a4f93;--sky:#57aef0;--jet:#05060a;
-  --rank:#41506a;--rank-off:#222b38;
-  --grass-a:#1b5733;--grass-b:#17492b;--chalk-line:rgba(255,255,255,.34);
-  --display:"Fraunces",Georgia,"Times New Roman",serif;
-  --ui:"Inter",ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-}
+:root{--pitch:#0b0c10;--panel:#14171d;--panel-2:#1c212a;--line:#2e3644;--chalk:#eef2f7;
+  --mute:#8c97a8;--flood:#e8b43a;--grass:#46b27c;--brick:#d1514a;--blue:#0f6fc6;--blue-deep:#0a4f93;
+  --sky:#57aef0;--jet:#05060a;--rank:#41506a;--rank-off:#222b38;--grass-a:#1b5733;--grass-b:#17492b;
+  --chalk-line:rgba(255,255,255,.34);--display:"Fraunces",Georgia,"Times New Roman",serif;
+  --ui:"Inter",ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;--sk:-11deg;
+  --bug:linear-gradient(100deg,var(--blue-deep) 0%,var(--blue) 68%,var(--sky) 140%);
+  --gold-glow:0 0 18px rgba(232,180,58,.35)}
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{background:var(--pitch);color:var(--chalk);font-family:var(--ui);font-size:16px;
@@ -16,16 +14,18 @@ button{cursor:pointer}
 :focus-visible{outline:2px solid var(--flood);outline-offset:2px}
 .wrap{max-width:1040px;margin:0 auto;padding:0 20px 72px}
 
-.mast{display:flex;align-items:center;gap:14px;padding:22px 0 18px;border-bottom:1px solid var(--line)}
-.mast h1{font-family:var(--display);font-weight:700;font-size:21px;letter-spacing:-.01em;margin:0;line-height:1.05}
-.mast .sub{color:var(--mute);font-size:13px;margin-top:3px}
+.mast{display:flex;align-items:center;gap:13px;margin:0 -20px;padding:20px 20px 18px;position:relative;
+  background:linear-gradient(97deg,var(--jet) 0%,var(--blue-deep) 46%,var(--blue) 100%)}
+.mast h1{margin:0;line-height:1.05;font-family:var(--ui);font-weight:800;font-size:19px;
+  text-transform:uppercase;letter-spacing:.06em;font-style:italic;color:#fff}
+.mast .sub{font-size:13px;margin-top:3px;color:rgba(255,255,255,.72)}
 .mast .spacer{flex:1}
 
-.hero{position:relative;overflow:hidden;padding:46px 0 40px;border-bottom:1px solid var(--line)}
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);padding:40px 0 38px}
 .hero::before{content:"";position:absolute;top:-60px;bottom:-60px;left:42%;right:-25%;
-  background:repeating-linear-gradient(115deg,rgba(15,111,198,.34) 0 30px,rgba(5,6,10,0) 30px 60px);
   -webkit-mask-image:linear-gradient(90deg,rgba(0,0,0,0),#000 60%,rgba(0,0,0,.15));
-  mask-image:linear-gradient(90deg,rgba(0,0,0,0),#000 60%,rgba(0,0,0,.15));pointer-events:none}
+  mask-image:linear-gradient(90deg,rgba(0,0,0,0),#000 60%,rgba(0,0,0,.15));pointer-events:none;
+  background:repeating-linear-gradient(115deg,rgba(15,111,198,.5) 0 26px,rgba(5,6,10,0) 26px 52px)}
 .hero>*{position:relative}
 .hero.has-xi{display:grid;gap:26px}
 @media(min-width:900px){.hero.has-xi{grid-template-columns:minmax(0,1fr) 300px;align-items:start;gap:34px}}
@@ -33,18 +33,20 @@ button{cursor:pointer}
 .hero.has-xi::before{display:none}
 .xi .kick{margin-bottom:8px}
 .xi{max-width:430px}
-.kick{color:var(--flood);font-size:13px;font-weight:600;letter-spacing:.06em;margin-bottom:10px}
-.opp{font-family:var(--display);font-weight:900;line-height:.98;letter-spacing:-.022em;
-  font-size:clamp(34px,8.5vw,70px);margin:0 0 16px;max-width:18ch}
+.opp{font-family:var(--display);font-weight:900;margin:0 0 16px;max-width:18ch;
+  font-size:clamp(40px,10vw,86px);letter-spacing:-.035em;font-style:italic;text-transform:uppercase;
+  line-height:.9;margin-bottom:12px}
 .hero .meta{display:flex;flex-wrap:wrap;gap:8px 26px;font-size:15px}
 .hero .meta b{font-weight:600}
 .dim{color:var(--mute)}
-.count{margin-top:20px;display:inline-flex;align-items:baseline;gap:9px;border:1px solid var(--line);
-  border-radius:999px;padding:7px 16px}
-.count strong{font-family:var(--display);font-size:20px;font-weight:700;color:var(--flood)}
+.count{margin-top:20px;display:inline-flex;align-items:baseline;gap:9px;
+  background:linear-gradient(90deg,rgba(15,111,198,.16),rgba(15,111,198,0));position:relative;
+  z-index:0;padding:9px 20px 9px 16px}
+.count strong{font-family:var(--display);font-size:20px;font-weight:700;color:var(--flood);
+  text-shadow:var(--gold-glow)}
 .count span{font-size:13px;color:var(--mute)}
 .note{margin-top:20px;border-left:3px solid var(--flood);padding:2px 0 2px 14px;font-size:15px;
-  max-width:60ch;white-space:pre-line}
+  max-width:60ch;white-space:pre-line;border-left-color:var(--blue)}
 
 .grid{display:grid;gap:0}
 /* grid items default to min-width:auto, so a wide chart would stretch the whole
@@ -52,7 +54,9 @@ button{cursor:pointer}
 .grid>section{min-width:0}
 @media(min-width:900px){.grid{grid-template-columns:1fr 1fr;gap:0 44px}.grid .full{grid-column:1/-1}}
 section{padding:30px 0;border-bottom:1px solid var(--line)}
-section h2{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.01em;margin:0 0 4px;line-height:1.15}
+section h2{line-height:1.15;padding-left:11px;border-left:3px solid var(--blue);position:relative;
+  display:inline-block;z-index:0;margin:0 0 12px;padding:8px 20px 8px 15px;font-family:var(--ui);
+  font-size:12.5px;font-weight:800;text-transform:uppercase;letter-spacing:.11em;color:#fff}
 section .hint{color:var(--mute);font-size:13px;margin:0 0 18px;max-width:64ch}
 
 .lb{list-style:none;margin:0;padding:0}
@@ -61,24 +65,27 @@ section .hint{color:var(--mute);font-size:13px;margin:0 0 18px;max-width:64ch}
 .lb li:last-child{border-bottom:0}
 .lb .rk{color:var(--mute);font-size:13px;text-align:right}
 .lb .nm{font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.lb .val{font-family:var(--display);font-weight:700;font-size:20px;min-width:2ch;text-align:right}
-.lb .bar{grid-column:3/-1;height:3px;background:var(--flood);border-radius:2px;margin-top:-4px;opacity:.75}
-.lb li.lead .val{color:var(--flood)}
+.lb .val{font-family:var(--display);font-weight:700;min-width:2ch;text-align:right;font-size:23px}
+.lb .bar{grid-column:3/-1;margin-top:-4px;height:4px;
+  background:linear-gradient(90deg,var(--blue),var(--flood));
+  box-shadow:0 0 10px rgba(232,180,58,.3);animation:bd-grow .75s cubic-bezier(.2,.8,.2,1) both;
+  transform-origin:left}
+.lb li.lead .val{color:var(--flood);text-shadow:var(--gold-glow)}
 .lb .sec{color:var(--mute);font-size:13px;font-weight:400;margin-left:8px}
 
 .tbl{width:100%;border-collapse:collapse;font-size:14px}
-.tbl th{text-align:right;font-weight:500;color:var(--mute);font-size:12px;padding:0 0 9px;border-bottom:1px solid var(--line)}
+.tbl th{text-align:right;padding:0 0 9px;text-transform:uppercase;letter-spacing:.08em;
+  font-weight:800;font-size:11px;color:var(--sky);border-bottom:2px solid var(--blue-deep)}
 .tbl th:nth-child(1),.tbl th:nth-child(2){text-align:left}
 .tbl th:nth-child(1){padding-left:9px}
 .tbl td{padding:8px 0;border-bottom:1px solid rgba(46,54,68,.45);text-align:right}
 /* The rank column. Scoped to team rows on purpose: an expanded panel is a row
    with a single td, which is :nth-child(1) too, and would otherwise inherit the
    rank column's width and dimming. */
-.tbl tr[data-team] td:nth-child(1){color:var(--mute);text-align:left;width:34px;padding-left:9px}
+.tbl tr[data-team] td:nth-child(1){text-align:left;width:34px;padding-left:9px;
+  font-family:var(--display);font-weight:900;font-size:16px;color:var(--chalk);opacity:.5}
 .tbl td:nth-child(2){text-align:left;font-weight:500}
-.tbl td.pts{font-weight:700}
-.tbl tr.me td{background:rgba(232,180,58,.09)}
-.tbl tr.me td:nth-child(2){box-shadow:inset 3px 0 0 var(--flood);padding-left:9px}
+.tbl tr.me td:nth-child(2){padding-left:9px;box-shadow:inset 4px 0 0 var(--flood);font-weight:700}
 .tbl th.fm,.tbl td.fm{text-align:right;padding-left:16px;padding-right:3px;white-space:nowrap}
 .tbl tr.tr{cursor:pointer}
 .tbl tr.tr:hover td{background:rgba(255,255,255,.035)}
@@ -92,11 +99,11 @@ section .hint{color:var(--mute);font-size:13px;margin:0 0 18px;max-width:64ch}
 .tdet{padding:2px 4px 14px 26px;max-width:660px}
 .tdet .rows li{padding:8px 0}
 .form i.now{box-shadow:0 0 0 2px var(--pitch),0 0 0 3px rgba(238,242,247,.42)}
-.pswitch{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin:2px 0 14px}
-.pswitch button{background:none;border:0;padding:7px 16px;font-size:13.5px;font-weight:600;color:var(--mute)}
-.pswitch button[aria-selected="true"]{background:var(--blue);color:#fff}
-.gh{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-.01em;
-  margin:22px 0 8px;padding-left:10px;border-left:3px solid var(--blue)}
+.pswitch{display:inline-flex;border:1px solid var(--line);overflow:hidden;margin:2px 0 14px;border-color:var(--blue-deep)}
+.pswitch button{background:none;border:0;padding:7px 16px;color:var(--mute);
+  text-transform:uppercase;letter-spacing:.08em;font-size:11.5px;font-weight:800}
+.gh{margin:22px 0 8px;padding-left:10px;font-family:var(--ui);
+  font-size:12px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:var(--sky)}
 .gh:first-of-type{margin-top:6px}
 .tbl tr.up td:nth-child(1){box-shadow:inset 3px 0 0 var(--blue)}
 .tbl tr.cut td{border-bottom:2px dashed var(--blue)}
@@ -111,16 +118,15 @@ section .hint{color:var(--mute);font-size:13px;margin:0 0 18px;max-width:64ch}
 .bump .brk{stroke:var(--mute);stroke-width:1;stroke-dasharray:3 4;opacity:.6}
 .bump .brklbl{fill:var(--mute);font-size:10.5px}
 
-
 .rows{margin:0;padding:0;list-style:none}
 .rows li{display:grid;grid-template-columns:76px 1fr auto;gap:14px;align-items:baseline;
   padding:11px 0;border-bottom:1px solid rgba(46,54,68,.45);font-size:15px}
 .rows .dt{color:var(--mute);font-size:13px}
 .rows .vs{overflow:hidden}
 .rows .vs .fld{display:block;color:var(--mute);font-size:12.5px;margin-top:2px}
-.rows .sc{font-family:var(--display);font-weight:700;font-size:18px;white-space:nowrap}
-.rows .sc.w{color:var(--grass)}.rows .sc.l{color:var(--brick)}.rows .sc.d{color:var(--mute)}
-.rows .sc.tbd{font-family:var(--ui);font-size:13px;color:var(--mute);font-weight:500}
+.rows .sc{font-family:var(--display);font-size:18px;white-space:nowrap;position:relative;z-index:0;
+  padding:3px 13px;font-weight:800;color:#fff}
+.rows .sc.tbd{font-family:var(--ui);font-size:13px;font-weight:500;color:var(--mute)}
 .moved{color:var(--flood);font-size:12px}
 .rows li.mrow.can{cursor:pointer}
 .rows li.mrow.can:hover .vs{color:var(--sky)}
@@ -142,10 +148,11 @@ section .hint{color:var(--mute);font-size:13px;margin:0 0 18px;max-width:64ch}
 
 .form{display:inline-flex;gap:4px;vertical-align:middle}
 .form i{width:19px;height:19px;border-radius:5px;display:grid;place-items:center;font-style:normal;
-  font-size:11px;font-weight:700;color:#0b0c10}
-.form .W{background:var(--grass)}.form .D{background:var(--mute)}.form .L{background:var(--brick)}
+  font-size:11px;font-weight:700;color:var(--jet)}
+.form .W{background:var(--grass)}.form .L{background:var(--brick)}
 
-.empty{border:1px dashed var(--line);border-radius:10px;padding:22px;color:var(--mute);font-size:14.5px}
+.empty{border:1px dashed var(--line);border-radius:10px;padding:22px;color:var(--mute);
+  font-size:14.5px;border-color:var(--line)}
 .empty b{display:block;color:var(--chalk);font-weight:600;margin-bottom:4px;font-size:15px}
 
 .chartwrap{overflow-x:auto;max-width:100%;margin-top:6px;padding-bottom:2px}
@@ -172,11 +179,9 @@ section .hint{color:var(--mute);font-size:13px;margin:0 0 18px;max-width:64ch}
 .legend{display:flex;gap:8px 18px;font-size:12.5px;color:var(--mute);margin-top:14px;flex-wrap:wrap}
 .legend i{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--rank);margin-right:7px}
 .legend i.me{background:var(--flood)}
-.legend i.off{background:var(--rank-off);box-shadow:inset 0 0 0 1px #3b4657}
 
-.pitch{position:relative;aspect-ratio:3/4;border-radius:12px;overflow:hidden;
-  background:repeating-linear-gradient(180deg,var(--grass-a) 0 12.5%,var(--grass-b) 12.5% 25%);
-  box-shadow:inset 0 0 0 2px var(--chalk-line),0 1px 0 rgba(255,255,255,.04)}
+.pitch{position:relative;aspect-ratio:3/4;overflow:hidden;
+  background:repeating-linear-gradient(180deg,var(--grass-a) 0 12.5%,var(--grass-b) 12.5% 25%);box-shadow:inset 0 0 0 2px rgba(87,174,240,.25)}
 .pitch::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:2px solid var(--chalk-line)}
 .pitch::after{content:"";position:absolute;left:50%;top:50%;width:26%;aspect-ratio:1;
   transform:translate(-50%,-50%);border:2px solid var(--chalk-line);border-radius:50%}
@@ -184,16 +189,18 @@ section .hint{color:var(--mute);font-size:13px;margin:0 0 18px;max-width:64ch}
   border:2px solid var(--chalk-line);border-bottom:0}
 .pitch .box.six{left:33%;right:33%;height:6.5%}
 .pitch .box.top{bottom:auto;top:0;border:2px solid var(--chalk-line);border-top:0}
-.chip{position:absolute;transform:translate(-50%,-50%);display:grid;justify-items:center;gap:4px;width:70px}
+.chip{position:absolute;transform:translate(-50%,-50%);display:grid;justify-items:center;gap:4px;
+  width:70px;cursor:pointer}
 /* no frame: a cut-out should sit on the grass. drop-shadow follows the alpha,
    so a floating head casts a head-shaped shadow, not a rounded-square one. */
-.chip .ph{position:relative;display:block;width:46px;height:46px;border-radius:11px;overflow:hidden;
-  filter:drop-shadow(0 3px 5px rgba(0,0,0,.55))}
+.chip .ph{position:relative;display:block;width:46px;height:46px;overflow:hidden;
+  filter:drop-shadow(0 3px 5px rgba(0,0,0,.55));border-radius:8px;
+  transition:transform .18s cubic-bezier(.2,.8,.2,1)}
 .chip .face{width:100%;height:100%;object-fit:cover;display:block}
-.chip .pos{position:absolute;left:0;bottom:0;background:var(--blue);color:#fff;font-size:8.5px;
-  font-weight:700;line-height:1;padding:3px 4px;border-radius:0 6px 0 0;letter-spacing:.03em}
-.chip .nm{font-size:11.5px;color:#fff;text-align:center;line-height:1.15;background:rgba(5,12,8,.66);
-  border-radius:999px;padding:2px 8px;white-space:nowrap;max-width:76px;overflow:hidden;
+.chip .pos{position:absolute;left:0;bottom:0;color:#fff;font-size:8.5px;font-weight:700;
+  line-height:1;padding:3px 4px;letter-spacing:.03em;background:var(--bug)}
+.chip .nm{font-size:11.5px;color:#fff;text-align:center;line-height:1.15;
+  background:rgba(5,12,8,.66);padding:2px 8px;white-space:nowrap;overflow:hidden;
   text-overflow:ellipsis;max-width:70px}
 .strip{display:flex;flex-wrap:wrap;align-items:center;gap:7px 10px;margin-top:12px}
 .strip .lbl{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
@@ -205,9 +212,9 @@ section .hint{color:var(--mute);font-size:13px;margin:0 0 18px;max-width:64ch}
 .attwrap{overflow-x:auto;padding-bottom:2px}
 .attgrid{min-width:min-content}
 .attrow{display:grid;grid-template-columns:152px auto 54px;align-items:center;gap:12px;
-  padding:6px 0;border-bottom:1px solid rgba(46,54,68,.45)}
+  padding:6px 0;border-bottom:1px solid rgba(46,54,68,.45);cursor:pointer;
+  transition:background-color .15s ease}
 .attrow:last-child{border-bottom:0}
-.attrow{cursor:pointer}
 .attrow:hover .who{color:var(--sky)}
 .attrow:focus-visible{outline:2px solid var(--flood);outline-offset:-2px}
 .attrow .who{position:sticky;left:0;background:var(--pitch);padding-right:6px;font-size:14.5px;
@@ -236,10 +243,9 @@ section .hint{color:var(--mute);font-size:13px;margin:0 0 18px;max-width:64ch}
 .attdet .tot b{color:var(--chalk);font-weight:600}
 .attdet .rows li{padding:7px 0}
 .attdet .did{display:inline-flex;align-items:center;gap:9px;margin-left:10px;vertical-align:-3px}
-.attdet .did span{display:inline-flex;align-items:center;gap:4px;font-size:12.5px;color:var(--mute)}
-.attdet .did svg{width:15px;height:15px}
-.attdet .did svg{color:var(--flood)}
-.attdet .did span{font-variant-numeric:tabular-nums}
+.attdet .did span{display:inline-flex;align-items:center;gap:4px;font-size:12.5px;color:var(--mute);
+  font-variant-numeric:tabular-nums}
+.attdet .did svg{width:15px;height:15px;color:var(--flood)}
 .legend i.on{background:var(--blue)}
 .legend i.off{background:rgba(46,54,68,.9);box-shadow:none}
 .legend i.nl{background:none;box-shadow:inset 0 0 0 1px var(--line)}
@@ -264,29 +270,17 @@ section .hint{color:var(--mute);font-size:13px;margin:0 0 18px;max-width:64ch}
   .tbl td:nth-child(2){max-width:38vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .rows li{grid-template-columns:62px 1fr auto;gap:10px}
 }
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
 code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em;
   background:var(--panel);padding:2px 5px;border-radius:5px}
-/* --- Club Brugge livery --- */
+/* --- Club Brugge livery: the stripe along the top edge and the crest --- */
 body::before{content:"";display:block;height:6px;
   background:repeating-linear-gradient(90deg,var(--blue) 0 16px,var(--jet) 16px 32px)}
-.mast{gap:13px}
 .crest{flex:0 0 auto;width:38px;height:38px;border-radius:50%;
   background:repeating-linear-gradient(115deg,var(--blue) 0 7px,var(--jet) 7px 14px);
   border:2px solid var(--chalk);box-shadow:0 0 0 1px rgba(232,180,58,.6)}
-.kick{color:var(--sky)}
-.count{border-color:var(--line);background:linear-gradient(90deg,rgba(15,111,198,.16),rgba(15,111,198,0))}
-.note{border-left-color:var(--blue)}
-section h2{padding-left:11px;border-left:3px solid var(--blue)}
-.tbl tr.me td{background:rgba(15,111,198,.14)}
-.tbl tr.me td:nth-child(2){box-shadow:inset 3px 0 0 var(--flood)}
-.att .fill{background:linear-gradient(90deg,var(--blue-deep),var(--blue))}
-.att .track{background:rgba(46,54,68,.8)}
-.form i{color:var(--jet)}
 .form .D{background:var(--blue);color:#fff}
-.empty{border-color:var(--line)}
-@media(max-width:600px){.hero::before{left:56%;background:repeating-linear-gradient(115deg,rgba(15,111,198,.28) 0 22px,rgba(5,6,10,0) 22px 44px)}}
+@media(max-width:600px){.hero::before{left:56%}}
 
 /* --- faces --- */
 /* One round frame, three sizes. A silhouette and a photo must occupy exactly
@@ -324,92 +318,57 @@ section h2{padding-left:11px;border-left:3px solid var(--blue)}
 
 /* --- the crawl ---
    Our own season, in date order, looping. Three states, three colours: played
-   is quiet, next is gold, still-to-come is blue. It runs in every skin; the
-   skins only change its dress. Hover holds it still so a result can be read. */
-.ticker{margin:0 -20px;overflow:hidden;background:var(--panel);
-  border-bottom:1px solid var(--line)}
-.tk{display:inline-flex;white-space:nowrap;animation:tk-crawl 64s linear infinite}
+   is quiet, next is gold, still-to-come is blue. Hover holds it still so a
+   result can be read. */
+.ticker{margin:0 -20px;overflow:hidden;
+  background:linear-gradient(97deg,var(--jet),var(--blue-deep) 70%,var(--blue));
+  box-shadow:inset 0 -3px 0 var(--flood)}
+.tk{display:inline-flex;white-space:nowrap;animation:tk-crawl 48s linear infinite}
 .ticker:hover .tk,.ticker:focus-within .tk{animation-play-state:paused}
-.tk .it{display:inline-flex;align-items:baseline;gap:7px;padding:7px 17px;font-size:12.5px;
-  white-space:nowrap;color:var(--mute);box-shadow:inset 1px 0 0 var(--line)}
-.tk .it i{font-style:normal;font-size:11px;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--mute);opacity:.8}
-.tk .it b{font-weight:700;color:var(--chalk)}
+.tk .it{display:inline-flex;align-items:baseline;gap:7px;white-space:nowrap;position:relative;
+  z-index:0;color:rgba(255,255,255,.72);font-size:12px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.05em;padding:8px 20px}
+.tk .it i{font-style:normal;font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.8;
+  color:rgba(255,255,255,.5)}
+.tk .it b{font-weight:700;color:#fff}
 .tk .it b.w{color:var(--grass)}
 .tk .it b.l{color:var(--brick)}
-.tk .it.nx{color:var(--flood);font-weight:600}
-.tk .it.nx i{color:var(--flood);font-weight:700;opacity:1}
-.tk .it.up{color:var(--sky)}
-.tk .it.up i{color:var(--sky);opacity:.75}
+.tk .it.nx i{font-weight:700;opacity:1;color:var(--jet)}
 @keyframes tk-crawl{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@media(max-width:600px){.ticker{margin:0 -15px}.tk .it{padding:6px 13px;font-size:12px}}
+@media(max-width:600px){.ticker{margin:0 -15px}}
 @media(prefers-reduced-motion:reduce){
   .tk{white-space:normal;flex-wrap:wrap}
   .tk .it:nth-child(n+40){display:none}
 }
 
 /* ============================================================================
-   The broadcast layer. Everything above this line is structure; everything
-   below is the look.
+   The broadcast pieces: the furniture that exists only for the look — skewed
+   tabs and bugs drawn as ::before panels, the chip ring, hover lifts, and the
+   reveals. Every element's own rule lives once, above; this section only adds
+   what has no other home.
 
    The grammar is one shape: a parallelogram. Tabs, bugs, score chips and the
-   masthead all lean by the same angle, and text inside them is counter-skewed
-   so only the furniture slants, never the words.
+   masthead all lean by the same angle (--sk). The panel behind the text is the
+   thing that is skewed, never the text, so only the furniture slants.
    ========================================================================= */
-
-:root{
-  --sk:-11deg;
-  --bug:linear-gradient(100deg,var(--blue-deep) 0%,var(--blue) 68%,var(--sky) 140%);
-  --gold-glow:0 0 18px rgba(232,180,58,.35);
-}
 
 /* ---------- masthead: a title bar, full bleed ---------- */
 
-.mast{
-  margin:0 -20px;padding:20px 20px 18px;border-bottom:0;position:relative;
-  background:linear-gradient(97deg,var(--jet) 0%,var(--blue-deep) 46%,var(--blue) 100%);
-}
 .mast::after{
   content:"";position:absolute;left:0;right:0;bottom:0;height:3px;
   background:repeating-linear-gradient(90deg,var(--flood) 0 22px,rgba(0,0,0,.35) 22px 44px);
 }
-.mast h1{
-  font-family:var(--ui);font-weight:800;font-size:19px;text-transform:uppercase;
-  letter-spacing:.06em;font-style:italic;color:#fff;
-}
-.mast .sub{color:rgba(255,255,255,.72)}
 
 /* ---------- section headings: the lower third ---------- */
 
-section h2{
-  position:relative;display:inline-block;z-index:0;margin:0 0 12px;padding:8px 20px 8px 15px;
-  font-family:var(--ui);font-size:12.5px;font-weight:800;text-transform:uppercase;
-  letter-spacing:.11em;color:#fff;
-}
 section h2::before{
   content:"";position:absolute;inset:0;z-index:-1;transform:skewX(var(--sk));
   background:var(--bug);box-shadow:-5px 0 0 0 var(--flood);
 }
-.gh{
-  border-left:0;padding:0;font-family:var(--ui);font-size:12px;font-weight:800;
-  letter-spacing:.11em;text-transform:uppercase;color:var(--sky);
-}
 
 /* ---------- the crawl, broadcast cut ---------- */
 
-.ticker{
-  background:linear-gradient(97deg,var(--jet),var(--blue-deep) 70%,var(--blue));
-  border-bottom:0;box-shadow:inset 0 -3px 0 var(--flood);
-}
-.tk{animation-duration:48s}
-.tk .it{
-  position:relative;z-index:0;color:rgba(255,255,255,.72);box-shadow:none;
-  font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:8px 20px;
-}
-.tk .it i{color:rgba(255,255,255,.5)}
-.tk .it b{color:#fff}
 .tk .it.nx{color:var(--jet);font-weight:800}
-.tk .it.nx i{color:var(--jet)}
 .tk .it.nx::before{
   content:"";position:absolute;inset:0 6px;z-index:-1;transform:skewX(var(--sk));background:var(--flood);
 }
@@ -418,22 +377,11 @@ section h2::before{
 
 /* ---------- hero: the big one ---------- */
 
-.hero{padding:40px 0 38px}
-.hero::before{
-  background:repeating-linear-gradient(115deg,rgba(15,111,198,.5) 0 26px,rgba(5,6,10,0) 26px 52px);
-}
-.kick{
-  display:inline-block;position:relative;z-index:0;color:#fff;padding:6px 16px 6px 12px;
-  font-size:11.5px;letter-spacing:.14em;font-weight:800;margin-bottom:14px;
-}
+.kick{display:inline-block;position:relative;z-index:0;padding:6px 16px 6px 12px;font-size:11.5px;
+  letter-spacing:.14em;font-weight:800;margin-bottom:14px;color:var(--jet)}
 .kick::before{
   content:"";position:absolute;inset:0;z-index:-1;transform:skewX(var(--sk));
   background:var(--flood);
-}
-.kick{color:var(--jet)}
-.opp{
-  font-size:clamp(40px,10vw,86px);letter-spacing:-.035em;font-style:italic;
-  text-transform:uppercase;line-height:.9;margin-bottom:12px;
 }
 /* the underline arrives after the name, the way a graphic settles on screen */
 .opp::after{
@@ -441,24 +389,13 @@ section h2::before{
   background:linear-gradient(90deg,var(--flood),rgba(232,180,58,0));
   animation:bd-sweep .7s .15s cubic-bezier(.2,.8,.2,1) both;
 }
-.count{
-  position:relative;z-index:0;border:0;border-radius:0;padding:9px 20px 9px 16px;
-}
 .count::before{
   content:"";position:absolute;inset:0;z-index:-1;transform:skewX(var(--sk));
   background:rgba(15,111,198,.22);box-shadow:inset 0 0 0 1px rgba(87,174,240,.45);
 }
-.count strong{text-shadow:var(--gold-glow)}
 
 /* ---------- league table ---------- */
 
-.tbl th{
-  text-transform:uppercase;letter-spacing:.08em;font-weight:800;font-size:11px;
-  color:var(--sky);border-bottom:2px solid var(--blue-deep);
-}
-.tbl tr[data-team] td:nth-child(1){
-  font-family:var(--display);font-weight:900;font-size:16px;color:var(--chalk);opacity:.5;
-}
 .tbl tr[data-team]{transition:transform .16s ease,background-color .16s ease}
 .tbl tr[data-team]:hover td{background:rgba(15,111,198,.16)}
 .tbl tr[data-team]:hover{transform:translateX(5px)}
@@ -467,56 +404,27 @@ section h2::before{
    table paints the tr's own background behind transparent cells, which is
    exactly one sweep across the whole row. */
 .tbl tr.me{background:linear-gradient(90deg,rgba(232,180,58,.20),rgba(232,180,58,.03) 60%)}
-.tbl tr.me td{background:none}
 .tbl tr.me td:nth-child(1){opacity:1;color:var(--flood)}
-.tbl tr.me td:nth-child(2){box-shadow:inset 4px 0 0 var(--flood);font-weight:700}
 .tbl td.pts{font-family:var(--display);font-size:17px;font-weight:900}
 
-.pswitch{border-radius:0;border-color:var(--blue-deep)}
-.pswitch button{
-  text-transform:uppercase;letter-spacing:.08em;font-size:11.5px;font-weight:800;
-}
 .pswitch button[aria-selected="true"]{background:var(--bug);color:#fff}
 
 /* ---------- scores as score bugs ---------- */
 
-.rows .sc{
-  position:relative;z-index:0;padding:3px 13px;font-weight:800;color:#fff;
-}
 .rows .sc::before{
   content:"";position:absolute;inset:0;z-index:-1;transform:skewX(var(--sk));
 }
-/* The colour lives in the bug now, so the text on top of it must be light —
-   and it has to be said per result class, because .rows .sc.w up in the
-   structure section is more specific than .rows .sc down here and would
-   otherwise keep painting green text on a green bug. Deeper fills than the
-   palette's own green and red, so white clears 4.5:1 on both. */
-.rows .sc.w,.rows .sc.l,.rows .sc.d{color:#fff}
+/* The result colour lives in the bug, so the score on top of it is white
+   (set on .rows .sc). The fills are a shade deeper than the palette's own green
+   and red so that white clears 4.5:1 on both. If you ever give .rows .sc.w a
+   colour of its own, it will beat .rows .sc and paint green on green. */
 .rows .sc.w::before{background:#2a7f55}
 .rows .sc.l::before{background:#c0433c}
 .rows .sc.d::before{background:var(--rank)}
-.rows .sc.tbd{color:var(--mute)}
-.rows .sc.tbd::before{background:none;box-shadow:inset 0 0 0 1px var(--line)}
-
-/* ---------- boards ---------- */
-
-.lb .val{font-size:23px}
-.lb li.lead .val{text-shadow:var(--gold-glow)}
-.lb .bar{
-  height:4px;border-radius:0;opacity:1;
-  background:linear-gradient(90deg,var(--blue),var(--flood));
-  box-shadow:0 0 10px rgba(232,180,58,.3);
-  animation:bd-grow .75s cubic-bezier(.2,.8,.2,1) both;
-  transform-origin:left;
-}
+.rows .sc.tbd::before{box-shadow:inset 0 0 0 1px var(--line)}
 
 /* ---------- the pitch: press a player ---------- */
 
-.pitch{border-radius:0;box-shadow:inset 0 0 0 2px rgba(87,174,240,.25)}
-.chip{cursor:pointer}
-.chip .ph{
-  border-radius:8px;transition:transform .18s cubic-bezier(.2,.8,.2,1);
-}
 .chip:hover .ph{transform:translateY(-3px) scale(1.04)}
 .chip:active .ph{transform:translateY(-6px) scale(1.08)}
 /* the ring fires on press and cleans up after itself */
@@ -525,8 +433,6 @@ section h2::before{
   border-radius:50%;border:2px solid var(--flood);opacity:0;pointer-events:none;
 }
 .chip:active::after{animation:bd-ring .55s ease-out}
-.chip .nm{border-radius:0}
-.chip .pos{border-radius:0;background:var(--bug)}
 
 /* ---------- reveals ---------- */
 
@@ -541,7 +447,6 @@ section h2::before{
 /* the chart draws itself in rather than arriving finished */
 .bump svg{animation:bd-reveal 1.1s .1s cubic-bezier(.3,.7,.2,1) both}
 
-.attrow{transition:background-color .15s ease}
 .attrow:hover{background:rgba(15,111,198,.10)}
 .wall figure .ph{transition:transform .2s cubic-bezier(.2,.8,.2,1)}
 .wall figure:hover .ph{transform:translateY(-4px) scale(1.05)}
@@ -562,8 +467,9 @@ section h2::before{
 }
 
 /* Motion is decoration here, never information. Anyone who has asked their
-   system to stop moving things gets the same page, still. */
+   system to stop moving things gets the same page, still. The pseudo-elements
+   are named on purpose: * does not match ::before or ::after, and several of
+   the moving parts live there — the name underline, the chip ring, the tabs. */
 @media(prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important}
-  .opp::after{max-width:420px}
+  *,*::before,*::after{animation:none!important;transition:none!important}
 }

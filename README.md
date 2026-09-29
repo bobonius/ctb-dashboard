@@ -55,8 +55,8 @@ the match is still ahead of you, whatever its date says.
 One line per match, not per player:
 
 ```
-fixture_id,squad,goals,assists,motm,formation
-5,Tom;Stefan;Niels;Bob,Tom:2;Niels,Stefan,Tom,GK:Bob;CB:Tom
+fixture_id,squad,goals,assists,clean_sheets,pens_saved,motm,formation
+5,Tom;Stefan;Niels;Bob,Tom:2;Niels,Stefan,Bob,Bob,Tom,GK:Bob;CB:Tom
 ```
 
 `squad` is everyone who played. `goals` and `assists` are ids, `:n` for more
@@ -70,6 +70,12 @@ in the GitHub app on a phone, where the keyboard curls every `"` you type into
 a `"` and quietly breaks the row. Commas inside a quoted field still parse, so
 rows written the old way keep working.
 
+`clean_sheets` is whoever kept goal while we kept it at nil. It is typed rather
+than read off the formation, because the keeper changes during a match: if two
+people shared the job, list both and both get one. The page flags a clean sheet
+logged for a match we conceded in. `pens_saved` works like `goals` — an id, or
+`id:2` for two in one match.
+
 `motm` is man of the match: one id, optional. It feeds no total and settles no
 argument — it just puts that face under the match with a gold ring. Leave it
 empty and nothing is rendered.
@@ -77,7 +83,7 @@ empty and nothing is rendered.
 `formation` is the starting eleven, written **before** the match:
 
 ```
-14,,,,,GK:Bob;CB:Tom;CB:Marlo;CM:Loek;LM:Odin;RM:Dani;ST:Jesse;BENCH:Stefan
+14,,,,,,,GK:Bob;CB:Tom;CB:Marlo;CM:Loek;LM:Odin;RM:Dani;ST:Jesse;BENCH:Stefan
 ```
 
 It lives in its own column rather than inside `squad`, because `squad` means who

@@ -3,6 +3,10 @@
 #   squad       everyone who played, ids separated by semicolons
 #   goals       ids of scorers, id:2 for a brace. A scorer not in squad is added to it.
 #   assists     same shape
+#   clean_sheets  whoever kept goal while we kept it at nil. Typed, not taken from
+#               the formation, because the keeper changes mid-match; list both
+#               if you swapped. One per player per match at most.
+#   pens_saved  ids of keepers who saved a penalty, id:2 for two
 #   motm        man of the match: ONE id. Never counts towards anything,
 #               it is just displayed with a gold ring.
 #   formation   the starting eleven, written BEFORE the match: LABEL:id pairs,
@@ -11,9 +15,9 @@
 # Separate ids with a SEMICOLON, never a comma: the commas are the column
 # separators. A row full of semicolons needs no quotes, which is what makes it
 # typeable on a phone. Example:
-#   5,Tom;Stefan;Dani,Tom:2;Dani,Stefan,Tom,GK:Bob;CB:Tom
+#   5,Tom;Stefan;Dani,Tom:2;Dani,Stefan,Bob,Bob,Tom,GK:Bob;CB:Tom
 # Commas inside a quoted field still parse, so old rows keep working.
 
-fixture_id,squad,goals,assists,motm,formation
-5,Bob;Tom;Marlo;Loek;Odin;Dani;Jesse;Stefan;Twan,,,Bob,GK:Bob;CB:Tom;CB:Marlo;CM:Loek;LM:Odin;RM:Dani;ST:Jesse;BENCH:Stefan;BENCH:Twan
-14,Odin;Chris;Bob;Stefan;Marlo;Jesse;Dani;Loek;Tom,Odin:2;Jesse:2;Dani:1;Chris:1;Marlo:1,Marlo:1;Jesse:2;Dani:2;Odin:1,Odin,GK:Bob;CB:Stefan;CB:Marlo;CM:Jesse;LM:Odin;RM:Dani;ST:Loek;BENCH:Tom;BENCH:Chris
+fixture_id,squad,goals,assists,clean_sheets,pens_saved,motm,formation
+5,Bob;Tom;Marlo;Loek;Odin;Dani;Jesse;Stefan;Twan,,,,,Bob,GK:Bob;CB:Tom;CB:Marlo;CM:Loek;LM:Odin;RM:Dani;ST:Jesse;BENCH:Stefan;BENCH:Twan
+14,Odin;Chris;Bob;Stefan;Marlo;Jesse;Dani;Loek;Tom,Odin:2;Jesse:2;Dani:1;Chris:1;Marlo:1,Marlo:1;Jesse:2;Dani:2;Odin:1,,,Odin,GK:Bob;CB:Stefan;CB:Marlo;CM:Jesse;LM:Odin;RM:Dani;ST:Loek;BENCH:Tom;BENCH:Chris
