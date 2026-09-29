@@ -361,6 +361,8 @@ body::before{content:"";display:block;height:6px;
 
 /* ---------- section headings: the lower third ---------- */
 
+section h2 .hi{width:15px;height:15px;vertical-align:-3px;margin-right:8px;color:var(--flood)}
+
 section h2::before{
   content:"";position:absolute;inset:0;z-index:-1;transform:skewX(var(--sk));
   background:var(--bug);box-shadow:-5px 0 0 0 var(--flood);
