@@ -3,9 +3,9 @@
 #   squad       everyone who played, ids separated by semicolons
 #   goals       ids of scorers, id:2 for a brace. A scorer not in squad is added to it.
 #   assists     same shape
-#   clean_sheets  whoever kept goal while we kept it at nil. Typed, not taken from
-#               the formation, because the keeper changes mid-match; list both
-#               if you swapped. One per player per match at most.
+#   clean_sheets  keeper and defenders of a match we kept at nil, e.g.
+#               Bob;Tom;Marlo;Stefan. Typed, not taken from the formation,
+#               because positions change mid-match. One per player per match.
 #   pens_saved  ids of keepers who saved a penalty, id:2 for two
 #   motm        man of the match: ONE id. Never counts towards anything,
 #               it is just displayed with a gold ring.

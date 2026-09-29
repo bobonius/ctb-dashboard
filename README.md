@@ -70,9 +70,9 @@ in the GitHub app on a phone, where the keyboard curls every `"` you type into
 a `"` and quietly breaks the row. Commas inside a quoted field still parse, so
 rows written the old way keep working.
 
-`clean_sheets` is whoever kept goal while we kept it at nil. It is typed rather
-than read off the formation, because the keeper changes during a match: if two
-people shared the job, list both and both get one. The page flags a clean sheet
+`clean_sheets` goes to the keeper and the defenders of a match we kept at nil —
+`Bob;Tom;Marlo;Stefan`. It is typed rather than read off the formation, because
+positions change during a match: list whoever defended, and each gets one. The page flags a clean sheet
 logged for a match we conceded in. `pens_saved` works like `goals` — an id, or
 `id:2` for two in one match.
 
