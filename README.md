@@ -1,14 +1,21 @@
 # Club Tower Brugge — MEL 26/27
 
-Team dashboard for the Monday Evening League at X TU Delft. Static site, no build
-step, no dependencies, no scheduled jobs. Four CSVs and a JSON file are the whole
+Team dashboard for the Monday Evening League at X TU Delft. Static site, no
+dependencies, no scheduled jobs. Four CSVs and a JSON file are the whole
 database; you edit them and commit, and the page renders whatever is in them.
 
 ## Getting it running
 
-**Publish this repo.** Settings → Pages → Source: *Deploy from a branch*, branch
-`main`, folder `/ (root)`. The site appears at `https://<you>.github.io/<repo>/`.
-That is the entire setup.
+**Publish this repo.** Settings → Pages → Source: *GitHub Actions*. The workflow
+in `.github/workflows/pages.yml` then publishes the site on every push to `main`,
+at `https://<you>.github.io/<repo>/`.
+
+The workflow does one thing beyond copying files: it runs
+`scripts/build-calendar.mjs` to write `calendar.ics`, the feed people subscribe
+to with *Sync to Google Calendar*. It is built from `fixtures.csv` with the same
+code the page uses, and it commits nothing back — so your local copy never falls
+behind because of it. Subscribed calendars pick up a moved match or a new score
+on their own; Google re-reads the feed roughly once or twice a day.
 
 ## The weekly routine
 
@@ -153,6 +160,9 @@ lib/app.css              every style on the page: structure first, then the
 lib/league.mjs           the league engine
 lib/render.mjs           everything that touches the DOM
 lib/csv.mjs              CSV reader
+lib/ics.mjs              the calendar file: downloaded from the page, or built
+                         as calendar.ics by scripts/build-calendar.mjs on publish
+.github/workflows/       pages.yml: publishes the site and the calendar feed
 data/meta.json           team, season, venue, message for the group
 data/fixtures.csv        the season: one row per match, all teams
 data/squad.csv           id, name, active, photo
