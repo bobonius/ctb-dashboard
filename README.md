@@ -158,6 +158,23 @@ pairs side by side; on a phone it is one column. The markup is `render()` and th
 functions it calls in `lib/render.mjs`; the layout styles are the `.v2` block at
 the end of `lib/app.css`, on top of the shared pieces above it.
 
+### Team socials
+
+The **Football / Social** switch in the masthead turns the page into the team's
+social side: the next event with a countdown, a round table with everyone's face
+(press the lazy susan in the middle — whoever the fish ends up facing gives the
+first toast), what's good to know, and what else is planned. Share
+`…/ctb-dashboard/?view=social` to open it straight there.
+
+Events live in `data/events.csv`, one line each (the comments at the top of the
+file explain the columns). A dated event goes into the calendar feed on its own,
+so anyone who synced the fixtures gets the dinner too. Leave `date` empty while
+something is still being planned. `seats` lists who sits where, clockwise from
+the top; empty shows the whole active squad. `theme` picks the look: `chinese`
+exists; a new theme is an entry in `THEMES` in `lib/render.mjs` plus a
+`.t-<theme>` block in `lib/social.css` (an unknown theme still gets a clean,
+plain page). The social styles load only when someone flips the switch.
+
 ## Working on it locally
 
 `index.html` loads ES modules and fetches the CSVs, so **opening the file
@@ -176,6 +193,7 @@ lib/app.css              every style on the page: structure first, then the
                          broadcast layer that gives it its look
 lib/league.mjs           the league engine
 lib/render.mjs           everything that touches the DOM
+lib/social.css           the Social page's look, loaded only when it is switched on
 lib/csv.mjs              CSV reader
 lib/ics.mjs              the calendar file: downloaded from the page, or built
                          as calendar.ics by scripts/build-calendar.mjs on publish
@@ -185,6 +203,7 @@ data/meta.json           team, season, venue, message for the group
 data/fixtures.csv        the season: one row per match, all teams
 data/squad.csv           id, name, active, photo
 data/appearances.csv     one line per match, not per player
+data/events.csv          team socials: dinner, trips — one line each
 data/faces/              opt-in photos, 240×240 WebP cut-outs, named in squad.csv
 ```
 
