@@ -499,3 +499,192 @@ section h2::before{
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
+
+/* ---------- the design switch, in the masthead of both designs ---------- */
+
+.dswitch{margin-left:auto;display:inline-flex;gap:2px;flex:0 0 auto}
+.dswitch button{position:relative;z-index:0;background:none;border:0;padding:6px 12px;font-size:11px;
+  font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.62)}
+.dswitch button::before{content:"";position:absolute;inset:0;z-index:-1;transform:skewX(var(--sk));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
+.dswitch button[aria-pressed="true"]{color:var(--jet)}
+.dswitch button[aria-pressed="true"]::before{background:var(--flood);box-shadow:none}
+.dswitch button:hover:not([aria-pressed="true"]){color:#fff}
+@media(max-width:600px){
+  .dswitch{position:absolute;right:15px;top:9px}
+  .dswitch button{padding:4px 8px;font-size:9.5px}
+  .mast h1{font-size:14.5px;letter-spacing:.04em}
+}
+
+/* ============================================================================
+   The new design. Everything below is scoped to .v2, the wrap renderNew()
+   draws, so the classic page above never sees a line of it.
+   ========================================================================= */
+
+.v2{max-width:1200px}
+.v2 section .hint{margin-bottom:14px}
+
+/* ---------- hero: a matchup, not a name ---------- */
+
+.v2 .hero{padding:34px 0 32px}
+.v2 .hero::before{left:38%;right:-6%;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 42%,#000 62%,transparent 96%);
+  mask-image:linear-gradient(90deg,transparent,#000 42%,#000 62%,transparent 96%)}
+.v2 .lock{display:grid;grid-template-columns:52px minmax(0,1fr) auto;align-items:center;gap:0 18px;max-width:900px}
+.v2 .lock .side{display:contents}
+.v2 .lock .crest,.v2 .lock .mono,.v2 .lock .v{grid-column:1}
+.v2 .lock .nm{grid-column:2}
+.v2 .lock .st{grid-column:3}
+.v2 .lock .crest,.v2 .lock .mono{width:48px;height:48px;justify-self:center}
+.v2 .lock .mono{display:grid;place-items:center;border-radius:50%;border:2px solid var(--chalk);
+  background:var(--panel-2);font-style:normal;font-weight:800;font-size:14px;letter-spacing:.02em}
+.v2 .lock .nm{margin:0;font-family:var(--display);font-weight:900;font-style:italic;text-transform:uppercase;
+  letter-spacing:-.03em;line-height:.95;font-size:clamp(26px,5.2vw,60px);overflow-wrap:anywhere}
+.v2 .hero.has-xi .lock .nm{font-size:clamp(26px,4vw,50px)}
+.v2 .lock .st{display:flex;align-items:center;gap:7px;font-size:14px;white-space:nowrap}
+.v2 .lock .st .form{margin-left:6px}
+.v2 .lock .v{grid-column:1;justify-self:center;margin:6px 0;font-family:var(--display);font-style:italic;
+  font-weight:900;font-size:18px;color:var(--flood);text-shadow:var(--gold-glow)}
+.v2 .lock::after{content:"";grid-column:1/-1;height:5px;margin-top:18px;max-width:420px;
+  background:linear-gradient(90deg,var(--flood),rgba(232,180,58,0));
+  animation:bd-sweep .7s .15s cubic-bezier(.2,.8,.2,1) both}
+.v2 .when{margin:16px 0 0;font-size:15px;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;color:var(--mute)}
+.v2 .when b{color:var(--chalk);font-weight:600}
+.v2 .when i{font-style:normal;opacity:.6}
+.v2 .when .again{flex-basis:100%;font-size:13.5px}
+.v2 .acts{margin-top:20px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px}
+.v2 .acts .cal{margin:0}
+.v2 .acts .linkish{font-size:13.5px}
+.v2 .acts .calnote{flex-basis:100%;margin:0}
+.v2 .last{margin-top:22px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:14.5px}
+.v2 .last .lbl{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.v2 .last .sc,.v2 .rows .sc{position:relative;z-index:0;padding:3px 12px;font-family:var(--ui);font-style:italic;
+  font-weight:800;font-size:15px;color:#fff;white-space:nowrap}
+.v2 .last .sc::before{content:"";position:absolute;inset:0;z-index:-1;transform:skewX(var(--sk))}
+.v2 .last .sc.w::before{background:#2a7f55}
+.v2 .last .sc.l::before{background:#c0433c}
+.v2 .last .sc.d::before{background:var(--rank)}
+@media(max-width:600px){
+  .v2 .lock{grid-template-columns:40px minmax(0,1fr);gap:0 12px}
+  .v2 .lock .crest,.v2 .lock .mono{width:38px;height:38px;grid-row:span 2}
+  .v2 .lock .mono{font-size:12px}
+  .v2 .lock .st{grid-column:2;margin-top:6px;font-size:13px}
+  .v2 .lock .v{margin:10px 0}
+  .v2 .hero::before{left:50%}
+}
+
+/* ---------- the grid: pairs on a wide screen, one column below ---------- */
+
+.v2grid{display:grid}
+.v2grid>section{min-width:0}
+@media(min-width:1100px){
+  .v2grid{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 52px}
+}
+
+/* main sections keep the blue label; secondary ones get a quiet one */
+.v2 .h2s{margin:4px 0 14px;font-size:12.5px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--sky);padding-left:11px;border-left:3px solid var(--flood);line-height:1.2}
+
+/* ---------- our season ---------- */
+
+.v2 .season li.mon{display:block;padding:18px 0 6px;border-bottom:1px solid var(--line);font-size:11.5px;
+  font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--sky)}
+.v2 .season li.mon:first-child{padding-top:0}
+.v2 .season li.mrow{grid-template-columns:40px minmax(0,1fr) auto 12px;align-items:center;gap:12px;padding:9px 0}
+.v2 .season .dt{display:grid;justify-items:center;line-height:1.05;font-size:10.5px;text-transform:uppercase;
+  letter-spacing:.06em}
+.v2 .season .dt b{font-size:17px;color:var(--chalk);font-weight:700;letter-spacing:0}
+.v2 .season .vs{display:flex;align-items:baseline;gap:6px 14px;flex-wrap:wrap}
+.v2 .season .vs .op{font-weight:500}
+.v2 .season .vs .fld{display:inline;margin:0;color:var(--mute);font-size:12.5px}
+.v2 .rows li.mrow.can .vs::after{content:none}
+.v2 .season .chev{color:var(--mute);font-size:17px;line-height:1;transition:transform .12s ease}
+.v2 .season li.open .chev{transform:rotate(90deg);color:var(--flood)}
+.v2 .rows .sc.tbd{font-style:normal;font-weight:600;font-size:12.5px;color:var(--mute)}
+.v2 .rows .sc.nxt{color:var(--jet);font-style:normal;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase}
+.v2 .rows .sc.nxt::before{background:var(--flood)}
+.v2 .season li.nx{background:linear-gradient(90deg,rgba(232,180,58,.12),rgba(232,180,58,0) 70%)}
+.v2 .season li.nx .op{font-weight:700}
+.v2 .season:not(.all) .fold{display:none}
+.v2 .more{margin-top:12px;background:none;border:1px solid var(--line);color:var(--sky);padding:8px 14px;
+  font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;width:100%}
+.v2 .more:hover{border-color:var(--blue);background:rgba(15,111,198,.08)}
+.v2 .callinks{margin-top:16px;font-size:13px;color:var(--mute);display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px}
+.v2 .callinks i{font-style:normal;opacity:.6}
+.v2 .callinks .calnote{flex-basis:100%;margin-top:8px}
+@media(max-width:600px){
+  .v2 .season .vs{display:block}
+  .v2 .season .vs .fld{display:block;margin-top:1px}
+  .v2 .season li.mrow{grid-template-columns:36px minmax(0,1fr) auto 10px;gap:10px}
+}
+
+/* ---------- season leaders ---------- */
+
+.v2 .ltabs{display:flex;gap:4px;margin:2px 0 8px;border-bottom:1px solid var(--line)}
+.v2 .ltabs button{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:7px;background:none;
+  border:0;border-bottom:3px solid transparent;margin-bottom:-1px;padding:9px 6px 10px;color:var(--mute);
+  font-size:13px;font-weight:700}
+.v2 .ltabs button .hi{width:15px;height:15px;color:currentColor}
+.v2 .ltabs button b{font-weight:800;font-size:11.5px;padding:1px 7px;border-radius:999px;background:var(--panel-2);color:var(--chalk)}
+.v2 .ltabs button[aria-selected="true"]{color:var(--chalk);border-bottom-color:var(--flood)}
+.v2 .ltabs button[aria-selected="true"] .hi{color:var(--flood)}
+.v2 .ltabs button:hover{color:var(--chalk)}
+.v2 .lpanel[hidden]{display:none}
+.v2 .lb .val{font-family:var(--ui);font-weight:800;font-size:20px}
+.v2 .lb .bar{background:var(--blue);box-shadow:none;height:3px;opacity:.8}
+.v2 .lb li.lead .bar{background:var(--flood);opacity:1}
+.v2 .lb li.lead .val{color:var(--flood)}
+.v2 .lb.def li{grid-template-columns:22px 26px 1fr 50px 50px}
+.v2 .v2c{display:inline-flex;align-items:center;justify-content:flex-end;gap:6px;font-weight:800;font-size:17px}
+.v2 .v2c svg{width:16px;height:16px;color:var(--flood)}
+.v2 .v2c.zero{color:var(--line);font-weight:600}
+.v2 .v2c.zero svg{color:var(--line)}
+.v2 .lfoot{margin:14px 0 0;font-size:12px;line-height:1.7}
+.v2 .lfoot .hi{width:13px;height:13px;vertical-align:-2px;margin-right:6px;color:var(--flood)}
+
+/* ---------- league table: one family for numbers, no dead gap ---------- */
+
+.v2 .tbl tr[data-team] td:nth-child(1),.v2 .tbl td.pts{font-family:var(--ui)}
+.v2 .tbl tr[data-team] td:nth-child(1){font-size:13px;font-weight:700;min-width:34px;padding-right:6px}
+.v2 .tbl td.pts{font-size:15px;font-weight:800}
+.v2 .tbl th:nth-child(2),.v2 .tbl td:nth-child(2){width:100%}
+.v2 .tbl th:nth-child(n+3),.v2 .tbl tr[data-team] td:nth-child(n+3){padding-left:13px}
+
+/* ---------- position: our line on a faint field ---------- */
+
+.v2 .chartwrap{overflow:visible}
+.v2 .bump.b2{width:100%;height:auto;max-width:640px;margin:0}
+.b2 .rk{fill:#5b6780;font-size:10px;text-anchor:end;dominant-baseline:central}
+.b2 .ax{fill:var(--mute);font-size:11px;text-anchor:middle}
+.b2 .cutlbl{fill:var(--sky);font-size:10.5px;dominant-baseline:central;opacity:.9}
+.b2 .tm path{fill:none;stroke:#8c97a8;stroke-width:1.5;stroke-linejoin:round;opacity:.16}
+.b2 .tm circle{fill:#8c97a8;opacity:.2}
+.b2 .tm .nm{fill:var(--chalk);font-size:11.5px;dominant-baseline:central;opacity:0}
+.b2 .tm:not(.me):hover path{stroke:var(--sky);opacity:1}
+.b2 .tm:not(.me):hover circle{fill:var(--sky);opacity:1}
+.b2 .tm:not(.me):hover .nm{opacity:1}
+.b2 .tm.me path{stroke:var(--flood);stroke-width:3;opacity:1;filter:drop-shadow(0 0 6px rgba(232,180,58,.35))}
+.b2 .tm.me .nd circle{fill:var(--flood);opacity:1;stroke:var(--pitch);stroke-width:2}
+.b2 .tm.me .nd.dim circle{fill:rgba(232,180,58,.45)}
+.b2 .tm.me .nd text{fill:var(--jet);font-size:10.5px;font-weight:800;text-anchor:middle;dominant-baseline:central}
+.b2 .tm.me .nm{opacity:1;font-weight:700;font-size:12.5px}
+
+/* ---------- attendance: labelled columns, the tally right after them ---------- */
+
+.v2 .attrow,.v2 .atthead{grid-template-columns:152px max-content 44px;justify-content:start}
+.v2 .atthead{display:grid;gap:12px;align-items:end;padding:0 0 6px;border-bottom:1px solid var(--line)}
+.v2 .atthead .cells{display:flex;gap:3px}
+.v2 .atthead .cell{display:grid;justify-items:center;line-height:1.1;font-size:9.5px;text-transform:uppercase;
+  letter-spacing:.05em;color:var(--mute)}
+.v2 .atthead .cell b{font-size:12px;color:var(--chalk);font-weight:700;letter-spacing:0}
+.v2 .attrow .cell .mark{display:inline-flex;align-items:center;gap:1px}
+.v2 .attrow .cell .n{position:static;min-width:0;height:auto;padding:0;background:none;box-shadow:none;
+  font-size:10.5px;line-height:1;color:var(--flood)}
+.v2 .attrow .cell svg{width:17px;height:17px}
+.v2 .attrow .pc{text-align:left;color:var(--chalk);font-weight:600}
+@media(max-width:600px){.v2 .attrow,.v2 .atthead{grid-template-columns:128px max-content 40px}}
+
+/* ---------- the squad ---------- */
+
+.v2 .wall{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(min-width:640px) and (max-width:1099px){.v2 .wall{grid-template-columns:repeat(6,minmax(0,1fr))}}
