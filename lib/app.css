@@ -530,11 +530,12 @@ section h2::before{
 .v2 .hero::before{left:38%;right:-6%;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 42%,#000 62%,transparent 96%);
   mask-image:linear-gradient(90deg,transparent,#000 42%,#000 62%,transparent 96%)}
-.v2 .lock{display:grid;grid-template-columns:52px minmax(0,1fr) auto;align-items:center;gap:0 18px;max-width:900px}
+.v2 .lock{display:grid;grid-template-columns:52px minmax(0,1fr);align-items:center;gap:0 18px;max-width:900px}
 .v2 .lock .side{display:contents}
 .v2 .lock .crest,.v2 .lock .mono,.v2 .lock .v{grid-column:1}
+.v2 .lock .crest,.v2 .lock .mono{grid-row:span 2}
 .v2 .lock .nm{grid-column:2}
-.v2 .lock .st{grid-column:3}
+.v2 .lock .st{grid-column:2;margin-top:8px}
 .v2 .lock .crest,.v2 .lock .mono{width:48px;height:48px;justify-self:center}
 .v2 .lock .mono{display:grid;place-items:center;border-radius:50%;border:2px solid var(--chalk);
   background:var(--panel-2);font-style:normal;font-weight:800;font-size:14px;letter-spacing:.02em}
