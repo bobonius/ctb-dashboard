@@ -635,13 +635,11 @@ section h2::before{
 .v2 .lb .bar{background:var(--blue);box-shadow:none;height:3px;opacity:.8}
 .v2 .lb li.lead .bar{background:var(--flood);opacity:1}
 .v2 .lb li.lead .val{color:var(--flood)}
-.v2 .lb.def li{grid-template-columns:22px 26px 1fr 50px 50px}
-.v2 .v2c{display:inline-flex;align-items:center;justify-content:flex-end;gap:6px;font-weight:800;font-size:17px}
-.v2 .v2c svg{width:16px;height:16px;color:var(--flood)}
-.v2 .v2c.zero{color:var(--line);font-weight:600}
-.v2 .v2c.zero svg{color:var(--line)}
-.v2 .lfoot{margin:14px 0 0;font-size:12px;line-height:1.7}
-.v2 .lfoot .hi{width:13px;height:13px;vertical-align:-2px;margin-right:6px;color:var(--flood)}
+.v2 .lsub{margin:18px 0 2px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--chalk);display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px}
+.v2 .lsub:first-child{margin-top:8px}
+.v2 .lsub .hi{width:15px;height:15px;color:var(--flood)}
+.v2 .lsub .dim{font-size:12px;font-weight:400;letter-spacing:0;text-transform:none}
 
 /* ---------- league table: one family for numbers, no dead gap ---------- */
 
