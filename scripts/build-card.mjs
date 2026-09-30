@@ -74,28 +74,63 @@ if (spots) {
 }
 
 const opp = next ? (next.home === me ? next.away : next.home) : 'Season complete';
+
+// The same matchup the page's hero draws: our crest and name, a gold "v", theirs
+// with a monogram, each with their standing underneath.
+const monogram = (name) => {
+  const words = String(name).split(/\s+/).filter(Boolean);
+  if (/^[A-Z]{2,}$/.test(words[0] || '')) return words[0].slice(0, 3);
+  if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
+  return words.slice(0, 2).map((w) => w[0]).join('').toUpperCase();
+};
+const formChips = (f) => f.slice(-5).map((r) => `<i class="${r}">${r}</i>`).join('');
+const standOf = (team) => {
+  const r = L.rowFor(table, team);
+  if (!r || !r.p) return '<span class="dim">no games yet</span>';
+  return `<b>${ordinal(r.pos)}</b><span class="dim">·</span>${r.pts} pt${r.pts === 1 ? '' : 's'}<span class="form">${formChips(r.form)}</span>`;
+};
+// Room for the names: the whole card without a line-up, the left part with one.
+const room = spots ? 560 : 1000;
+const longest = Math.max(me.length, opp.length);
+const nameSize = Math.max(40, Math.min(78, Math.floor(room / (longest * 0.6))));
+
+const prev = L.teamMatches(fixtures, me)[0];
+const lastBug = prev ? `<div class="last"><span class="lbl">Last time out</span>
+<span class="sc ${prev.gf > prev.ga ? 'w' : prev.gf < prev.ga ? 'l' : 'd'}">${prev.gf}–${prev.ga}</span>
+  <span>v ${esc(prev.opp)}</span></div>` : '';
+
 const html = `<!doctype html><html><head><meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,900&family=Inter:wght@500;700;800&display=block" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,900&family=Inter:wght@500;600;700;800&display=block" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0}
 body{width:1200px;height:630px;overflow:hidden;background:#0b0c10;color:#eef2f7;font-family:Inter,sans-serif;position:relative}
 body::before{content:"";position:absolute;inset:0 0 auto 0;height:10px;background:repeating-linear-gradient(90deg,#0f6fc6 0 26px,#05060a 26px 52px)}
-.stripes{position:absolute;top:0;bottom:0;left:48%;right:-10%;opacity:.55;
+.stripes{position:absolute;top:0;bottom:0;left:40%;right:0;opacity:.55;
   background:repeating-linear-gradient(115deg,rgba(15,111,198,.5) 0 34px,rgba(5,6,10,0) 34px 68px);
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 55%)}
-.l{position:absolute;left:60px;top:58px;width:640px}
-.team{display:flex;align-items:center;gap:14px;font-weight:800;font-size:24px;letter-spacing:.06em;text-transform:uppercase;font-style:italic}
-.crest{width:44px;height:44px;border-radius:50%;border:3px solid #eef2f7;background:repeating-linear-gradient(115deg,#0f6fc6 0 8px,#05060a 8px 16px)}
-.tab{display:inline-block;position:relative;margin:40px 0 14px;padding:8px 22px 8px 16px;color:#05060a;font-weight:800;font-size:17px;letter-spacing:.16em;text-transform:uppercase}
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 45%,#000 70%,transparent)}
+.lft{position:absolute;left:60px;top:54px;right:${spots ? 500 : 60}px}
+.tab{display:inline-block;position:relative;margin:0 0 30px;padding:8px 22px 8px 16px;color:#05060a;font-weight:800;font-size:17px;letter-spacing:.14em;text-transform:uppercase}
 .tab::before{content:"";position:absolute;inset:0;z-index:-1;background:#e8b43a;transform:skewX(-11deg)}
-.opp{font-family:Fraunces,serif;font-style:italic;font-weight:900;text-transform:uppercase;line-height:.9;letter-spacing:-.03em;font-size:${opp.length > 14 ? 76 : 96}px}
-.rule{height:6px;width:440px;margin:22px 0 22px;background:linear-gradient(90deg,#e8b43a,rgba(232,180,58,0))}
-.meta{display:flex;gap:30px;font-size:28px;font-weight:700}
-.meta span{color:#8c97a8;font-weight:500}
-.foot{position:absolute;left:60px;bottom:48px;display:flex;gap:14px}
-.bug{position:relative;padding:10px 20px;font-size:20px;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
-.bug::before{content:"";position:absolute;inset:0;z-index:-1;transform:skewX(-11deg);background:rgba(15,111,198,.28);box-shadow:inset 0 0 0 2px rgba(87,174,240,.6)}
-.bug.g{color:#e8b43a}.bug.g::before{background:rgba(232,180,58,.12);box-shadow:inset 0 0 0 2px #e8b43a}
+.lock{display:grid;grid-template-columns:64px 1fr;column-gap:24px;align-items:center}
+.lock .crest,.lock .mono{grid-column:1;grid-row:span 2;justify-self:center;width:60px;height:60px;border-radius:50%;border:3px solid #eef2f7}
+.crest{background:repeating-linear-gradient(115deg,#0f6fc6 0 9px,#05060a 9px 18px)}
+.mono{display:grid;place-items:center;background:#1c212a;font-weight:800;font-size:18px;font-style:normal}
+.lock .nm{grid-column:2;font-family:Fraunces,serif;font-style:italic;font-weight:900;text-transform:uppercase;line-height:.95;
+  letter-spacing:-.03em;font-size:${nameSize}px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lock .st{grid-column:2;display:flex;white-space:nowrap;align-items:center;gap:10px;margin-top:8px;font-size:22px;font-weight:500}
+.st b{font-weight:700}.dim{color:#8c97a8}
+.form{display:inline-flex;gap:5px;margin-left:8px}
+.form i{width:26px;height:26px;border-radius:6px;display:grid;place-items:center;font-style:normal;font-size:14px;font-weight:800;color:#05060a}
+.form .W{background:#46b27c}.form .L{background:#d1514a}.form .D{background:#0f6fc6;color:#fff}
+.lock .v{grid-column:1;justify-self:center;margin:12px 0;font-family:Fraunces,serif;font-style:italic;font-weight:900;font-size:26px;color:#e8b43a}
+.rule{height:6px;width:440px;margin:26px 0 22px;background:linear-gradient(90deg,#e8b43a,rgba(232,180,58,0))}
+.when{display:flex;gap:14px;font-size:26px;font-weight:700;align-items:baseline}
+.when i{font-style:normal;color:#8c97a8;opacity:.7}.when span{color:#8c97a8;font-weight:500}
+.last{position:absolute;left:60px;bottom:44px;display:flex;align-items:center;gap:16px;font-size:22px;font-weight:600}
+.last .lbl{font-size:15px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#8c97a8}
+.sc{position:relative;z-index:0;display:inline-block;padding:6px 18px;font-style:italic;font-weight:800;color:#fff}
+.sc::before{content:"";position:absolute;inset:0;z-index:-1;transform:skewX(-11deg)}
+.sc.w::before{background:#2a7f55}.sc.l::before{background:#c0433c}.sc.d::before{background:#41506a}
 .r{position:absolute;right:56px;top:40px;width:400px}
 .pitch{position:relative;height:500px;border-radius:14px;overflow:hidden;box-shadow:inset 0 0 0 3px rgba(255,255,255,.28);
   background:repeating-linear-gradient(180deg,#1f5c37 0 50px,#1a4f2f 50px 100px)}
@@ -106,19 +141,24 @@ body::before{content:"";position:absolute;inset:0 0 auto 0;height:10px;backgroun
 .chip{position:absolute;transform:translate(-50%,-50%);display:grid;justify-items:center;width:110px}
 .chip .ph{width:70px;height:70px;border-radius:12px;object-fit:cover;filter:drop-shadow(0 4px 6px rgba(0,0,0,.55))}
 .chip b{position:absolute;left:20px;top:52px;background:#0f6fc6;color:#fff;font-size:12px;padding:3px 6px;font-style:italic}
-.chip .nm{margin-top:4px;background:rgba(5,12,8,.72);padding:3px 10px;font-size:16px;font-weight:700}
+.chip .nm{margin-top:4px;background:rgba(5,12,8,.72);padding:3px 10px;font-size:16px;font-weight:700;font-family:Inter,sans-serif;font-style:normal;text-transform:none;letter-spacing:0;line-height:1.2}
 .sil{display:block;background:radial-gradient(circle at 50% 38%,#5b6a83 0 17%,transparent 18%),radial-gradient(ellipse 36% 30% at 50% 100%,#5b6a83 0 98%,transparent 100%) #2b3444}
 .bench{margin-top:12px;font-size:18px;color:#8c97a8;font-weight:700}
 </style></head><body><div class="stripes"></div>
-<div class="l">
-  <div class="team"><i class="crest"></i>${esc(me)}</div>
-  <div class="tab">${next ? 'Next up' : esc(meta.season)}</div>
-  <div class="opp">${esc(opp)}</div>
+<div class="lft">
+  <div class="tab">${next ? `Next up · ${esc(longDate(next.scheduled))}` : esc(meta.season)}</div>
+  ${next ? `<div class="lock">
+    <i class="crest"></i><div class="nm">${esc(me)}</div><div class="st">${standOf(me)}</div>
+    <div class="v">v</div>
+    <i class="mono">${esc(monogram(opp))}</i><div class="nm">${esc(opp)}</div><div class="st">${standOf(opp)}</div>
+  </div>
   <div class="rule"></div>
-  ${next ? `<div class="meta"><div>${esc(longDate(next.scheduled))}</div><div>${esc(next.time)} <span>kick-off</span></div>
-    <div>${esc(next.field.replace('Football Field', 'Football').replace('Hockey Field', 'Hockey'))}</div></div>` : ''}
+  <div class="when"><div>${esc(next.time)} <span>kick-off</span></div><i>·</i>
+    <div>${esc(next.field.replace('Football Field', 'Football').replace('Hockey Field', 'Hockey'))}</div><i>·</i>
+    <div><span>${esc(meta.venue)}</span></div></div>`
+    : `<div class="lock"><i class="crest"></i><div class="nm">${esc(me)}</div><div class="st">${standing || ''}</div></div>`}
 </div>
-<div class="foot">${standing ? `<div class="bug g">${esc(standing)}</div>` : ''}${lastLine ? `<div class="bug">Last: ${esc(lastLine)}</div>` : ''}</div>
+${lastBug}
 <div class="r">${side}</div>
 </body></html>`;
 
@@ -127,6 +167,16 @@ const browser = await chromium.launch({ executablePath: process.env.CHROME_PATH 
 const page = await browser.newPage({ viewport: { width: 1200, height: 630 } });
 await page.setContent(html, { waitUntil: 'networkidle' });
 await page.evaluate(() => document.fonts.ready);
+// Both names share one size, the largest at which the longer one fits on its
+// line in the real font — measured, because a guess from letter counts is
+// either too timid or cuts a long name off.
+await page.evaluate(() => {
+  const names = [...document.querySelectorAll('.lock .nm')];
+  let size = parseFloat(getComputedStyle(names[0]).fontSize);
+  while (size > 30 && names.some((n) => n.scrollWidth > n.clientWidth)) {
+    size -= 2; names.forEach((n) => { n.style.fontSize = `${size}px`; });
+  }
+});
 await page.screenshot({ path: `${site}/card.png`, type: 'png' });
 await browser.close();
 

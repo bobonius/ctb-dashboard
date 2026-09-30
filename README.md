@@ -18,9 +18,10 @@ behind because of it. Subscribed calendars pick up a moved match or a new score
 on their own; Google re-reads the feed roughly once or twice a day.
 
 It also runs `scripts/build-card.mjs`, which renders `card.png` — the poster you
-see when the site link is pasted into WhatsApp: next opponent, date, pitch, the
-line-up if one is logged (nothing there otherwise), your position and the
-last result — and writes the preview tags into the published `index.html`. The
+see when the site link is pasted into WhatsApp. It is drawn like the page's
+hero: the matchup, us v them with each side's position and form, date, kick-off
+and pitch, the last result, and the line-up if one is logged (nothing there
+otherwise) — and writes the preview tags into the published `index.html`. The
 card is rebuilt on every push, so push after logging a match or a line-up.
 WhatsApp keeps a preview for a link it has already seen; to force a fresh one,
 share the link with something on the end, e.g. `…/ctb-dashboard/?gw4`.
