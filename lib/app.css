@@ -29,8 +29,6 @@ button{cursor:pointer}
 .hero>*{position:relative}
 .hero.has-xi{display:grid;gap:26px}
 @media(min-width:900px){.hero.has-xi{grid-template-columns:minmax(0,1fr) 300px;align-items:start;gap:34px}}
-/* the stripe band and a grass pitch fight; the pitch wins */
-.hero.has-xi::before{display:none}
 .xi .kick{margin-bottom:8px}
 .xi{max-width:430px}
 .dim{color:var(--mute)}
@@ -491,6 +489,10 @@ section h2::before{
 .v2 .lock .nm{margin:0;font-family:var(--display);font-weight:900;font-style:italic;text-transform:uppercase;
   letter-spacing:-.03em;line-height:.95;font-size:clamp(26px,5.2vw,60px);overflow-wrap:anywhere}
 .v2 .hero.has-xi .lock .nm{font-size:clamp(26px,4vw,50px)}
+/* with a line-up the stripes stay, but fade out before they reach the pitch */
+@media(min-width:900px){.v2 .hero.has-xi::before{left:22%;right:334px;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 40%,#000 70%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 40%,#000 70%,transparent)}}
 .v2 .lock .st{display:flex;align-items:center;gap:7px;font-size:14px;white-space:nowrap}
 .v2 .lock .st .form{margin-left:6px}
 .v2 .lock .v{grid-column:1;justify-self:center;margin:6px 0;font-family:var(--display);font-style:italic;
