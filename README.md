@@ -149,16 +149,13 @@ is free for up to 50 users and makes the whole dashboard team-only. That is a
 bigger change than this file, but it is the only option that actually makes the
 data non-public.
 
-### Two designs
+### How the page is laid out
 
-The page has two designs of the same data, switched with **Classic / New** in the
-masthead. *New* is the default: next match as a matchup, our results first, the
-stat boards folded into one "Season leaders" block, table and position chart side
-by side on a wide screen. The choice is remembered per browser; add
-`?design=classic` or `?design=new` to the address to force one (handy for a link).
-All the new design's styles sit at the end of `lib/app.css`, scoped to `.v2`, and
-its markup is `renderNew()` and friends in `lib/render.mjs`, so dropping one design
-later is a matter of deleting that block.
+Next match first, then our results and the season leaders, the league table and
+position chart, and attendance with the squad. On a wide screen those come in
+pairs side by side; on a phone it is one column. The markup is `render()` and the
+functions it calls in `lib/render.mjs`; the layout styles are the `.v2` block at
+the end of `lib/app.css`, on top of the shared pieces above it.
 
 ## Working on it locally
 

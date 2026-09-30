@@ -33,26 +33,10 @@ button{cursor:pointer}
 .hero.has-xi::before{display:none}
 .xi .kick{margin-bottom:8px}
 .xi{max-width:430px}
-.opp{font-family:var(--display);font-weight:900;margin:0 0 16px;max-width:18ch;
-  font-size:clamp(40px,10vw,86px);letter-spacing:-.035em;font-style:italic;text-transform:uppercase;
-  line-height:.9;margin-bottom:12px}
-.hero .meta{display:flex;flex-wrap:wrap;gap:8px 26px;font-size:15px}
-.hero .meta b{font-weight:600}
 .dim{color:var(--mute)}
-.count{margin-top:20px;display:inline-flex;align-items:baseline;gap:9px;
-  background:linear-gradient(90deg,rgba(15,111,198,.16),rgba(15,111,198,0));position:relative;
-  z-index:0;padding:9px 20px 9px 16px}
-.count strong{font-family:var(--display);font-size:20px;font-weight:700;color:var(--flood);
-  text-shadow:var(--gold-glow)}
-.count span{font-size:13px;color:var(--mute)}
 .note{margin-top:20px;border-left:3px solid var(--flood);padding:2px 0 2px 14px;font-size:15px;
   max-width:60ch;white-space:pre-line;border-left-color:var(--blue)}
 
-.grid{display:grid;gap:0}
-/* grid items default to min-width:auto, so a wide chart would stretch the whole
-   column and take the league table with it — the chart scrolls, the page does not */
-.grid>section{min-width:0}
-@media(min-width:900px){.grid{grid-template-columns:1fr 1fr;gap:0 44px}.grid .full{grid-column:1/-1}}
 section{padding:30px 0;border-bottom:1px solid var(--line)}
 section h2{line-height:1.15;padding-left:11px;border-left:3px solid var(--blue);position:relative;
   display:inline-block;z-index:0;margin:0 0 12px;padding:8px 20px 8px 15px;font-family:var(--ui);
@@ -370,16 +354,9 @@ body::before{content:"";display:block;height:6px;
 .cal:active::before{background:rgba(232,180,58,.26)}
 .cal svg{width:16px;height:16px;flex:0 0 auto}
 .cal{text-decoration:none;cursor:pointer}
-.cal.alt{color:var(--sky)}
-.cal.alt::before{box-shadow:inset 0 0 0 1.5px rgba(87,174,240,.6)}
-.cal.alt:hover::before{background:rgba(87,174,240,.12)}
-.calbtns{display:inline-flex;flex-wrap:wrap;gap:10px 4px;vertical-align:middle}
 .calnote{margin:14px 0 0;font-size:13.5px;color:var(--chalk);max-width:60ch}
 .calurl{display:block;width:100%;margin-top:8px;padding:8px 10px;background:var(--panel);
   border:1px solid var(--line);color:var(--chalk);font-size:12.5px;font-family:ui-monospace,Menlo,monospace}
-.calrow{margin-top:18px}
-.calrow .cal{margin:0 0 0 0}
-.calrow .hint{margin:12px 0 0}
 .linkish{background:none;border:0;padding:0;color:var(--sky);text-decoration:underline;font-size:inherit}
 @media(max-width:600px){.hero .cal{margin-left:0}}
 
@@ -409,17 +386,6 @@ section h2::before{
   content:"";position:absolute;inset:0;z-index:-1;transform:skewX(var(--sk));
   background:var(--flood);
 }
-/* the underline arrives after the name, the way a graphic settles on screen */
-.opp::after{
-  content:"";display:block;height:5px;margin-top:14px;max-width:420px;
-  background:linear-gradient(90deg,var(--flood),rgba(232,180,58,0));
-  animation:bd-sweep .7s .15s cubic-bezier(.2,.8,.2,1) both;
-}
-.count::before{
-  content:"";position:absolute;inset:0;z-index:-1;transform:skewX(var(--sk));
-  background:rgba(15,111,198,.22);box-shadow:inset 0 0 0 1px rgba(87,174,240,.45);
-}
-
 /* ---------- league table ---------- */
 
 .tbl tr[data-team]{transition:transform .16s ease,background-color .16s ease}
@@ -487,8 +453,7 @@ section h2::before{
 @keyframes bd-ring{0%{opacity:.9;transform:scale(.55)}100%{opacity:0;transform:scale(2.1)}}
 
 @media(max-width:600px){
-  .opp{font-size:clamp(34px,11vw,54px)}
-  .mast h1{font-size:16px}
+    .mast h1{font-size:16px}
   .mast{margin:0 -15px;padding:16px 15px 14px}
 }
 
@@ -500,25 +465,9 @@ section h2::before{
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
 
-/* ---------- the design switch, in the masthead of both designs ---------- */
-
-.dswitch{margin-left:auto;display:inline-flex;gap:2px;flex:0 0 auto}
-.dswitch button{position:relative;z-index:0;background:none;border:0;padding:6px 12px;font-size:11px;
-  font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.62)}
-.dswitch button::before{content:"";position:absolute;inset:0;z-index:-1;transform:skewX(var(--sk));
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
-.dswitch button[aria-pressed="true"]{color:var(--jet)}
-.dswitch button[aria-pressed="true"]::before{background:var(--flood);box-shadow:none}
-.dswitch button:hover:not([aria-pressed="true"]){color:#fff}
-@media(max-width:600px){
-  .dswitch{position:absolute;right:15px;top:9px}
-  .dswitch button{padding:4px 8px;font-size:9.5px}
-  .mast h1{font-size:14.5px;letter-spacing:.04em}
-}
-
 /* ============================================================================
-   The new design. Everything below is scoped to .v2, the wrap renderNew()
-   draws, so the classic page above never sees a line of it.
+   The page layout. The rules above are the shared pieces; everything below is
+   scoped to .v2, the wrap render() draws, and wins over them where they meet.
    ========================================================================= */
 
 .v2{max-width:1200px}
