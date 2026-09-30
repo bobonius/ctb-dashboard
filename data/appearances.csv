@@ -19,7 +19,7 @@
 # Commas inside a quoted field still parse, so old rows keep working.
 
 fixture_id,squad,goals,assists,clean_sheets,pens_saved,motm,formation
-5,Bob;Tom;Marlo;Loek;Odin;Dani;Jesse;Stefan;Twan,,,Bob;Tom;Marlo,,Bob,GK:Bob;CB:Tom;CB:Marlo;CM:Loek;LM:Odin;RM:Dani;ST:Jesse;BENCH:Stefan;BENCH:Twan
+5,Bob;Tom;Marlo;Loek;Odin;Dani;Jesse;Stefan;Twan,,,Bob;Tom;Marlo,Stefan,Bob,GK:Bob;CB:Tom;CB:Marlo;CM:Loek;LM:Odin;RM:Dani;ST:Jesse;BENCH:Stefan;BENCH:Twan
 14,Odin;Chris;Bob;Stefan;Marlo;Jesse;Dani;Loek;Tom,Odin:2;Jesse:2;Dani:1;Chris:1;Marlo:1,Marlo:1;Jesse:2;Dani:2;Odin:1,,,Odin,GK:Bob;CB:Stefan;CB:Marlo;CM:Jesse;LM:Odin;RM:Dani;ST:Loek;BENCH:Tom;BENCH:Chris
 23,Odin;Chris;Twan;Marlo;Jesse;Dani;Loek;Tom,Odin:2;Jesse:1;Tom:1,Chris:1;Jesse:2,,Twan,Jesse,GK:Twan;CB:Tom;CB:Marlo;CM:Jesse;LM:Odin;RM:Loek;ST:Chris;BENCH:Dani
 32,,,,,,,GK:Bob;CB:Tom;CB:Marlo;CM:Jesse;LM:Dani;RM:Twan;ST:Chris;BENCH:Odin;BENCH:Stefan
