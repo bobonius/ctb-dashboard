@@ -561,9 +561,6 @@ section h2::before{
 .v2 .more{margin-top:12px;background:none;border:1px solid var(--line);color:var(--sky);padding:8px 14px;
   font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;width:100%}
 .v2 .more:hover{border-color:var(--blue);background:rgba(15,111,198,.08)}
-.v2 .callinks{margin-top:16px;font-size:13px;color:var(--mute);display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px}
-.v2 .callinks i{font-style:normal;opacity:.6}
-.v2 .callinks .calnote{flex-basis:100%;margin-top:8px}
 @media(max-width:600px){
   .v2 .season .vs{display:block}
   .v2 .season .vs .fld{display:block;margin-top:1px}
