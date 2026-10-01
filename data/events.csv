@@ -2,11 +2,12 @@
 #   id      short and unique, never changed once people have it in their calendar
 #   theme   the look the Social page takes for this event: chinese (more to come)
 #   date    YYYY-MM-DD, or empty while it is still being planned (no calendar entry then)
+#   until   last day, for something that lasts several days (a trip); empty for an evening
 #   start / end   HH:MM, local time
 #   seats   who sits at the table, clockwise from the top, e.g. Bob;Tom;Marlo
 #           — empty means the whole active squad is shown as invited
 #   note    things worth knowing, separated by | (pipe); put the note in "quotes" if it has a comma
 # A dated event goes into the calendar feed by itself, like a match.
-id,theme,title,date,start,end,venue,address,url,seats,note
+id,theme,title,date,start,end,venue,address,url,seats,note,until
 dinner-jan-2027,chinese,All-you-can-eat dinner,2027-01-08,19:00,21:30,De Chinese Boot,"Parkhaven 21, 3016 GM Rotterdam",https://www.dechineseboot.nl/,,"2½ hours of unlimited buffet: fish, meat and vegetarian|The restaurant floats: it is a boat moored in the Parkhaven|Come hungry"
-holiday-2027,holiday,Team holiday,,,,,,,,Where and when: being planned
+holiday-2027,holiday,Team holiday,2027-04-17,,,Sardinia,,,,A week on the island: see the Holiday page,2027-04-24

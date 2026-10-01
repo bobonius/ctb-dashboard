@@ -169,23 +169,29 @@ first toast), what's good to know, and what else is planned. Share
 Events live in `data/events.csv`, one line each (the comments at the top of the
 file explain the columns). A dated event goes into the calendar feed on its own,
 so anyone who synced the fixtures gets the dinner too. Leave `date` empty while
-something is still being planned. `seats` lists who sits where, clockwise from
+something is still being planned; give it an `until` day too and it becomes an
+all-day, several-day entry (the trip). `seats` lists who sits where, clockwise from
 the top; empty shows the whole active squad. `theme` picks the look: `chinese`
 exists; a new theme is an entry in `THEMES` in `lib/render.mjs` plus a
 `.t-<theme>` block in `lib/social.css` (an unknown theme still gets a clean,
 plain page). The social styles load only when someone flips the switch.
 
-### The holiday planner
+### The holiday page
 
-The **Holiday** tab is a shortlist on a map of Europe: every destination in
-`data/trips.csv` gets a pin and a flight path from Rotterdam, and the picked one
-shows as a boarding pass (travel time, distance, best months, three things to
-do). Filter chips along the top dim everything that is not, say, *Beach*. Share
-`…/ctb-dashboard/?view=holiday` to open it straight there. Add, drop or reorder
-lines in `trips.csv` and the map and cards follow; distances are worked out from
-the coordinates. The map is `lib/europe.mjs`, drawn once from Natural Earth data
-by `scripts/build-map.mjs` (only needed again to change the area it covers).
-On the Social page, the undated holiday row links to the planner.
+The **Holiday** tab is the team trip: Sardinia, 17–24 April 2027. A live countdown,
+the journey from Rotterdam on a map with a little plane flying it, the island with
+every spot worth a visit (press a pin or a name for its postcard; the chips show
+one kind at a time), the week as a draft plan with each day's sunrise and sunset
+worked out for the island, April weather, the crew on a boat, a trattoria menu,
+phrase cards that flip, and a packing list whose ticks stay on your own phone.
+Share `…/ctb-dashboard/?view=holiday` to open it straight there.
+
+Everything on it is `data/holiday.json` — dates, flights and base (empty shows
+"to be booked"), who is coming (`crew`, empty shows everyone), the spots, the
+day plans, the menu, the phrases and the packing list. The trip is also a dated
+row in `events.csv` with an `until` day, so it sits in the calendar feed as an
+all-day week. The island map is `lib/sardinia.mjs`, drawn once from Natural Earth
+data by `scripts/build-sardinia.mjs`; the journey map reuses `lib/europe.mjs`.
 
 ## Working on it locally
 
@@ -207,19 +213,20 @@ lib/league.mjs           the league engine
 lib/render.mjs           everything that touches the DOM
 lib/social.css           the Social page's look, loaded only when it is switched on
 lib/holiday.css          the Holiday page's look, loaded the same way
-lib/europe.mjs           the holiday map: projected coastlines and borders (generated)
+lib/europe.mjs           the journey map: projected coastlines and borders (generated)
+lib/sardinia.mjs         the island map on the Holiday page (generated)
 lib/csv.mjs              CSV reader
 lib/ics.mjs              the calendar file: downloaded from the page, or built
                          as calendar.ics by scripts/build-calendar.mjs on publish
 .github/workflows/       pages.yml: publishes the site, calendar feed and preview card
 scripts/                 build-calendar.mjs and build-card.mjs, run only by that workflow;
-                         build-map.mjs, run by hand to redraw the holiday map
+                         build-map.mjs and build-sardinia.mjs, run by hand to redraw the maps
 data/meta.json           team, season, venue, message for the group
 data/fixtures.csv        the season: one row per match, all teams
 data/squad.csv           id, name, active, photo
 data/appearances.csv     one line per match, not per player
 data/events.csv          team socials: dinner, trips — one line each
-data/trips.csv           the holiday shortlist: one line per destination
+data/holiday.json        the trip: dates, crew, spots, the week, menu, phrases, packing
 data/faces/              opt-in photos, 240×240 WebP cut-outs, named in squad.csv
 ```
 
