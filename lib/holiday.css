@@ -1,0 +1,144 @@
+/* The holiday planner. Loaded only when someone opens it. A summer travel
+   poster: deep sea, sand, a striped retro sun, deck-chair stripes, and a
+   boarding pass for whichever pin is picked. */
+
+body[data-page="holiday"]{--h-night:#061a2b;--h-sea:#0d3a5b;--h-sea2:#14588a;--h-sand:#f6e7c6;--h-sand2:#ead2a0;
+  --h-sun:#ffb43d;--h-coral:#ff6b52;--h-mint:#45d0b0;--h-ink:#fdf6e8;--h-mute:rgba(253,246,232,.68);
+  --h-line:rgba(253,246,232,.14);color:var(--h-ink);min-height:100vh;
+  background:radial-gradient(900px 500px at 85% -5%,rgba(255,140,80,.22),transparent 70%),
+    linear-gradient(var(--h-sea),var(--h-night) 70%)}
+body[data-page="holiday"]::before{height:6px;background:repeating-linear-gradient(90deg,var(--h-coral) 0 18px,var(--h-sand) 18px 36px)}
+.holiday{max-width:1180px}
+.holiday .mast{background:linear-gradient(97deg,var(--h-night) 0%,var(--h-sea2) 58%,#e8835e 115%)}
+.holiday .mast::after{background:repeating-linear-gradient(90deg,var(--h-sun) 0 22px,rgba(0,0,0,.25) 22px 44px)}
+.holiday .vtabs button[aria-pressed="true"]{background:var(--h-sand);color:var(--h-night)}
+.holiday .band{margin:0 -20px;height:14px;
+  background:repeating-linear-gradient(90deg,var(--h-coral) 0 22px,var(--h-sand) 22px 44px,var(--h-mint) 44px 66px,var(--h-sand) 66px 88px)}
+.holiday .linkish{color:var(--h-sun)}
+.holiday section{border-bottom:1px solid var(--h-line)}
+.holiday section h2{padding:0;border:0;margin:0 0 18px;color:var(--h-sun);font-size:13px;letter-spacing:.18em}
+.holiday section h2::before{content:none}
+.holiday .foot{justify-content:center;gap:10px 22px;color:var(--h-mute);padding:34px 0}
+
+/* ---------- hero: a poster with a striped sun ---------- */
+
+.hhero{position:relative;overflow:hidden;padding:58px 0 54px;border-bottom:1px solid var(--h-line)}
+.hhero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:26px;opacity:.5;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='26' viewBox='0 0 80 26'%3E%3Cpath d='M0 14c10 0 10-8 20-8s10 8 20 8 10-8 20-8 10 8 20 8' fill='none' stroke='%2345d0b0' stroke-width='2.5'/%3E%3C/svg%3E") repeat-x}
+.sun{position:absolute;right:4%;top:28px;width:min(360px,46vw);aspect-ratio:1;border-radius:50%;
+  background:linear-gradient(180deg,#ffe08a 0%,var(--h-sun) 42%,var(--h-coral) 78%,#e5487a 100%);
+  -webkit-mask-image:linear-gradient(#000 52%,transparent 52% 56%,#000 56% 63%,transparent 63% 68%,#000 68% 74%,transparent 74% 81%,#000 81% 86%,transparent 86% 94%,#000 94%);
+  mask-image:linear-gradient(#000 52%,transparent 52% 56%,#000 56% 63%,transparent 63% 68%,#000 68% 74%,transparent 74% 81%,#000 81% 86%,transparent 86% 94%,#000 94%);
+  filter:drop-shadow(0 0 40px rgba(255,140,80,.35));animation:h-rise 1.2s cubic-bezier(.2,.8,.2,1) both}
+.hcopy{position:relative;max-width:640px}
+.htag{display:inline-block;padding:6px 14px;border-radius:999px;box-shadow:inset 0 0 0 1.5px var(--h-mint);color:var(--h-mint);
+  font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;margin-bottom:18px}
+.htitle{margin:0;font-family:var(--display);font-style:italic;font-weight:900;text-transform:uppercase;
+  font-size:clamp(46px,8.4vw,104px);line-height:.88;letter-spacing:-.03em;color:var(--h-sand);
+  text-shadow:4px 4px 0 var(--h-coral),8px 8px 0 rgba(6,26,43,.6)}
+.hsub{margin:22px 0 0;max-width:46ch;font-size:16.5px;color:var(--h-mute)}
+.hstats{display:flex;flex-wrap:wrap;gap:12px 34px;margin-top:28px}
+.hstats span{display:grid;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--h-mute)}
+.hstats b{font-family:var(--display);font-weight:900;font-size:30px;letter-spacing:0;text-transform:none;color:var(--h-ink);line-height:1.1}
+
+/* ---------- the map and the boarding pass ---------- */
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.chips button{border:0;border-radius:999px;padding:7px 15px;background:rgba(253,246,232,.06);color:var(--h-ink);
+  box-shadow:inset 0 0 0 1px rgba(253,246,232,.28);font-size:13px;font-weight:600;transition:background-color .2s ease,color .2s ease}
+.chips button:hover{background:rgba(253,246,232,.14)}
+.chips button[aria-pressed="true"]{background:var(--h-sand);color:var(--h-night);box-shadow:none}
+.hgrid{display:grid;gap:22px}
+@media(min-width:1000px){.hgrid{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);align-items:start;gap:28px}}
+.mapbox{border-radius:18px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 24px 60px rgba(0,0,0,.4)}
+.hmap{display:block;width:100%;height:auto;font-family:var(--ui)}
+.hmap .grid{fill:none;stroke:rgba(255,255,255,.08);stroke-width:.8}
+.hmap .land{fill:url(#h-land);stroke:#d6b77c;stroke-width:.7}
+.hmap .borders{fill:none;stroke:rgba(120,88,40,.35);stroke-width:.7}
+.hmap .arc{fill:none;stroke:rgba(255,255,255,.55);stroke-width:1.6;stroke-dasharray:1 7;stroke-linecap:round;transition:opacity .25s ease}
+.hmap .arc.on{stroke:var(--h-coral);stroke-width:3.4;stroke-dasharray:7 8;animation:h-fly .9s linear infinite;
+  filter:drop-shadow(0 0 4px rgba(255,107,82,.6))}
+.hmap .arc.off{opacity:.12}
+.hmap .home .hd{fill:var(--h-coral);stroke:#fff;stroke-width:2.5}
+.hmap .home .ping{fill:none;stroke:var(--h-coral);stroke-width:2;transform-box:fill-box;transform-origin:center;
+  animation:h-ping 2s ease-out infinite}
+.hmap .home text{fill:#fff;font-size:17px;font-weight:800;dominant-baseline:central;paint-order:stroke;stroke:#0b3352;stroke-width:4px}
+.hmap .pin{cursor:pointer;outline:none;transition:opacity .25s ease}
+.hmap .pin .pi{transition:transform .25s cubic-bezier(.3,1.4,.5,1)}
+.hmap .pin .dot{fill:#0b3352;stroke:var(--h-sand);stroke-width:2.6;transition:fill .2s ease}
+.hmap .pin .halo{fill:var(--h-sun);opacity:0}
+.hmap .pin .pn{fill:var(--h-sand);font-size:14px;font-weight:800;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.hmap .pin .pl{fill:#fff;font-size:19px;font-weight:800;dominant-baseline:central;paint-order:stroke;stroke:#0b3352;stroke-width:5px;stroke-linejoin:round}
+.hmap .pin:hover .pi,.hmap .pin:focus-visible .pi{transform:scale(1.15)}
+.hmap .pin:hover .dot{fill:var(--h-coral)}
+.hmap .pin.on .dot{fill:var(--h-sun);stroke:#fff}
+.hmap .pin.on .pn{fill:#0b3352}
+.hmap .pin.on .halo{opacity:.35;transform-box:fill-box;transform-origin:center;animation:h-halo 1.6s ease-in-out infinite alternate}
+.hmap .pin.on .pl{fill:var(--h-sun)}
+.hmap .pin.off{opacity:.25}
+
+/* the boarding pass */
+.bp{position:relative;background:var(--h-sand);color:#0b2c47;border-radius:16px;overflow:hidden;
+  box-shadow:0 24px 50px rgba(0,0,0,.4);animation:h-slide .45s cubic-bezier(.2,.8,.2,1) both}
+.bp-top{display:flex;justify-content:space-between;padding:11px 20px;background:var(--h-coral);color:#fff;
+  font-size:10.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+.bp-route{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:22px 20px 10px}
+.bp-route b{display:block;font-family:var(--display);font-weight:900;font-size:50px;line-height:.9;letter-spacing:-.02em}
+.bp-route span{display:block;font-size:12.5px;font-weight:600;color:#5b6b78;margin-top:4px}
+.bp-route .to{text-align:right}
+.bp-plane{justify-self:center;width:30px;height:30px;color:var(--h-coral);position:relative}
+.bp-route>svg{width:100%;height:30px;background:linear-gradient(90deg,transparent 0 4%,rgba(11,44,71,.25) 4% 40%,transparent 40% 60%,rgba(11,44,71,.25) 60% 96%,transparent 96%) center/100% 2px no-repeat}
+.bp-facts{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px;padding:14px 20px 20px}
+.bp-facts span,.bp-do>span{display:block;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#7a8794}
+.bp-facts b{display:block;font-size:15.5px;font-weight:700;margin-top:2px}
+.bp-tear{position:relative;height:0;border-top:2px dashed rgba(11,44,71,.25);margin:0 22px}
+.bp-tear::before,.bp-tear::after{content:"";position:absolute;top:-13px;width:24px;height:24px;border-radius:50%;background:var(--h-night)}
+.bp-tear::before{left:-34px}
+.bp-tear::after{right:-34px}
+.bp-do{padding:18px 20px 14px}
+.bp-do ol{margin:8px 0 0;padding:0;list-style:none;counter-reset:d;display:grid;gap:8px}
+.bp-do li{counter-increment:d;display:grid;grid-template-columns:24px 1fr;align-items:baseline;font-size:15px;font-weight:500}
+.bp-do li::before{content:counter(d);font-family:var(--display);font-weight:900;color:var(--h-coral)}
+.bp-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.bp-tags i,.tcard .tt i{font-style:normal;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px}
+.bp-tags i{box-shadow:inset 0 0 0 1px rgba(11,44,71,.35)}
+.bp-code{height:34px;margin:6px 20px 18px;opacity:.75;
+  background:repeating-linear-gradient(90deg,#0b2c47 0 2px,transparent 2px 4px,#0b2c47 4px 5px,transparent 5px 8px,#0b2c47 8px 11px,transparent 11px 12px,#0b2c47 12px 13px,transparent 13px 16px)}
+
+/* ---------- the shortlist ---------- */
+
+.tcards{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.tcard{width:100%;height:100%;text-align:left;display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:baseline;
+  padding:14px 16px;border:0;border-radius:12px;background:rgba(253,246,232,.05);box-shadow:inset 0 0 0 1px var(--h-line);
+  color:var(--h-ink);transition:transform .2s ease,background-color .2s ease,box-shadow .2s ease,opacity .25s ease}
+.tcard:hover{transform:translateY(-3px);background:rgba(253,246,232,.09)}
+.tcard .tn{font-family:var(--display);font-weight:900;font-size:22px;color:var(--h-coral)}
+.tcard .tb b{display:block;font-size:16px;font-weight:800}
+.tcard .tb span{display:block;font-size:12.5px;color:var(--h-mute);margin-top:2px}
+.tcard .tk{font-size:12px;font-weight:700;color:var(--h-sun);white-space:nowrap}
+.tcard .tt{grid-column:2/-1;display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.tcard .tt i{background:rgba(253,246,232,.08);color:var(--h-mute)}
+.tcard.on{background:rgba(255,107,82,.14);box-shadow:inset 0 0 0 1.5px var(--h-coral)}
+.tcard.off{opacity:.35}
+
+@keyframes h-fly{to{stroke-dashoffset:-30}}
+@keyframes h-ping{from{transform:scale(.8);opacity:1}to{transform:scale(3.2);opacity:0}}
+@keyframes h-halo{from{transform:scale(.85)}to{transform:scale(1.15)}}
+@keyframes h-slide{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes h-rise{from{opacity:0;transform:translateY(40px)}to{transform:none}}
+
+@media(max-width:700px){
+  .hhero{padding:40px 0 46px}
+  .sun{right:-16%;top:6px;width:48vw;opacity:.55}
+  .hstats b{font-size:24px}
+  .holiday .band{margin:0 -15px}
+  /* the whole map is about a third of its drawn size here: bigger pins, and only
+     the picked one keeps its label */
+  .hmap .pin .pi{transform:scale(1.9)}
+  .hmap .pin:hover .pi{transform:scale(2.05)}
+  .hmap .pin .pl{display:none}
+  .hmap .pin.on .pl{display:block}
+  .hmap .home text{font-size:30px;stroke-width:6px}
+  .hmap .home .hd{r:11}
+  .bp-route b{font-size:40px}
+}

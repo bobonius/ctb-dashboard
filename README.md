@@ -160,8 +160,8 @@ the end of `lib/app.css`, on top of the shared pieces above it.
 
 ### Team socials
 
-The **Football / Social** switch in the masthead turns the page into the team's
-social side: the next event with a countdown, a round table with everyone's face
+The **Football · Social · Holiday** tabs in the masthead switch between the three
+pages. Social is the team's social side: the next event with a countdown, a round table with everyone's face
 (press the lazy susan in the middle — whoever the fish ends up facing gives the
 first toast), what's good to know, and what else is planned. Share
 `…/ctb-dashboard/?view=social` to open it straight there.
@@ -174,6 +174,18 @@ the top; empty shows the whole active squad. `theme` picks the look: `chinese`
 exists; a new theme is an entry in `THEMES` in `lib/render.mjs` plus a
 `.t-<theme>` block in `lib/social.css` (an unknown theme still gets a clean,
 plain page). The social styles load only when someone flips the switch.
+
+### The holiday planner
+
+The **Holiday** tab is a shortlist on a map of Europe: every destination in
+`data/trips.csv` gets a pin and a flight path from Rotterdam, and the picked one
+shows as a boarding pass (travel time, distance, best months, three things to
+do). Filter chips along the top dim everything that is not, say, *Beach*. Share
+`…/ctb-dashboard/?view=holiday` to open it straight there. Add, drop or reorder
+lines in `trips.csv` and the map and cards follow; distances are worked out from
+the coordinates. The map is `lib/europe.mjs`, drawn once from Natural Earth data
+by `scripts/build-map.mjs` (only needed again to change the area it covers).
+On the Social page, the undated holiday row links to the planner.
 
 ## Working on it locally
 
@@ -194,16 +206,20 @@ lib/app.css              every style on the page: structure first, then the
 lib/league.mjs           the league engine
 lib/render.mjs           everything that touches the DOM
 lib/social.css           the Social page's look, loaded only when it is switched on
+lib/holiday.css          the Holiday page's look, loaded the same way
+lib/europe.mjs           the holiday map: projected coastlines and borders (generated)
 lib/csv.mjs              CSV reader
 lib/ics.mjs              the calendar file: downloaded from the page, or built
                          as calendar.ics by scripts/build-calendar.mjs on publish
 .github/workflows/       pages.yml: publishes the site, calendar feed and preview card
-scripts/                 build-calendar.mjs and build-card.mjs, run only by that workflow
+scripts/                 build-calendar.mjs and build-card.mjs, run only by that workflow;
+                         build-map.mjs, run by hand to redraw the holiday map
 data/meta.json           team, season, venue, message for the group
 data/fixtures.csv        the season: one row per match, all teams
 data/squad.csv           id, name, active, photo
 data/appearances.csv     one line per match, not per player
 data/events.csv          team socials: dinner, trips — one line each
+data/trips.csv           the holiday shortlist: one line per destination
 data/faces/              opt-in photos, 240×240 WebP cut-outs, named in squad.csv
 ```
 

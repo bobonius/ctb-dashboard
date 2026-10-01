@@ -1,0 +1,19 @@
+# The holiday shortlist: one line per destination, shown on the Holiday page.
+#   code         three letters on the boarding pass (the airport code, say)
+#   lat / lon    where the pin goes (decimal degrees; west is negative)
+#   travel       how you get there and roughly how long, as it should read on the card
+#   months       best time to go
+#   tags         any of: Beach, City, Nightlife, Football, Food, Outdoors, Budget — separated by ;
+#   highlights   three things to do, separated by |
+# Add, remove or reorder lines freely: the map and the cards follow this file.
+id,code,name,country,lat,lon,travel,months,tags,highlights
+barcelona,BCN,Barcelona,Spain,41.39,2.17,≈ 2 h flight,May–Oct,City;Beach;Football;Nightlife,Tapas crawl in El Born|An afternoon on Barceloneta beach|FC Barcelona at home
+lisbon,LIS,Lisbon,Portugal,38.72,-9.14,≈ 2 h 45 flight,Apr–Oct,City;Beach;Football;Nightlife,Sunset drinks at a miradouro|Surf lesson in Cascais or Ericeira|Benfica or Sporting at home
+porto,OPO,Porto,Portugal,41.15,-8.61,≈ 2 h 25 flight,May–Sep,City;Food;Football,Port cellars across the river in Gaia|A day out on the Douro|FC Porto at the Dragão
+split,SPU,Split,Croatia,43.51,16.44,≈ 2 h 10 flight,Jun–Sep,Beach;Outdoors;Nightlife;Football,Boat day to Hvar or Brač|Swim at Bačvice|Hajduk Split at Poljud
+budapest,BUD,Budapest,Hungary,47.50,19.04,≈ 1 h 55 flight,Apr–Oct,City;Nightlife;Budget,A beer in the Széchenyi baths|Ruin bars in the old Jewish quarter|Night cruise on the Danube
+krakow,KRK,Kraków,Poland,50.06,19.94,≈ 1 h 50 flight,May–Sep,City;Food;Budget,Old Town square and Wawel castle|Wieliczka salt mine|Pierogi and cheap rounds
+prague,PRG,Prague,Czechia,50.08,14.44,≈ 1 h 20 flight,Apr–Oct,City;Nightlife;Football;Budget,Charles Bridge before the crowds|Beer halls in the old town|Sparta or Slavia at home
+mallorca,PMI,Mallorca,Spain,39.57,2.65,≈ 2 h 10 flight,May–Oct,Beach;Outdoors;Nightlife,Coves and beach clubs|Cycle the Serra de Tramuntana|A boat along the coast
+dublin,DUB,Dublin,Ireland,53.35,-6.26,≈ 1 h 25 flight,Apr–Sep,City;Nightlife;Football,Pubs with live music|Guinness Storehouse|Gaelic games at Croke Park
+berlin,BER,Berlin,Germany,52.52,13.40,≈ 7 h by train,Apr–Oct,City;Nightlife;Football;Budget,Kreuzberg nights|Bike the Berlin Wall trail|Union Berlin at the Alte Försterei
