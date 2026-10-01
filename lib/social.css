@@ -130,6 +130,11 @@ body[data-page="social"]{--s-bg:#12131a;--s-bg2:#0b0c10;--s-ink:#f3efe6;--s-mute
   .seat{width:64px}
   .seat .sf{width:40px;height:40px}
   .seat .snm{font-size:10.5px;padding:1px 7px}
+  /* more than twelve at the table: smaller faces, so neighbours do not overlap */
+  .rtable.crowd{width:94%}
+  .rtable.crowd .seat{width:56px;gap:3px}
+  .rtable.crowd .seat .sf{width:32px;height:32px;box-shadow:0 0 0 2px #2a0a04,0 0 0 3.5px var(--s-gold),0 4px 10px rgba(0,0,0,.45)}
+  .rtable.crowd .seat .snm{font-size:9.5px;padding:1px 6px}
 }
 
 /* ---------- theme: chinese — lacquer red, gold, lanterns, a key-fret band ---------- */
