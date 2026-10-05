@@ -1,6 +1,9 @@
 # One line per player. `id` is the short name you type when logging a match —
 # keep it consistent, and never change it once it has been used in appearances.csv.
 # `active` false keeps a player's history but drops them off the attendance grid.
+# `active` guest is a one-off sub: counts in the match and the leaders with a
+#   "guest" tag, stays off the attendance grid, squad wall and socials. Give a
+#   guest who shares a name a different id (Bastiaan2) and the same name.
 # `photo` is OPT-IN. This site is public: a face here is on the open internet
 # next to a first name, so only fill it in for someone who has said yes.
 #   <file>  a file in data/faces/, e.g. bob.jpg
@@ -22,4 +25,5 @@ Vince, Vince, true
 Alexander, Alexander, true
 Max, Max, true
 Thijs, Thijs, true
-
+Bastiaan2,Bastiaan,guest
+Liz,Liz,guest

@@ -651,4 +651,10 @@ section h2::before{
   .vtabs{order:3;margin:12px 0 0 51px}
   .vtabs button{padding:5px 11px;font-size:10px}
 }
-}
+
+/* ---------- guests: one-off subs, tagged wherever they show up ---------- */
+
+.gtag{display:inline-block;margin-left:7px;padding:1px 6px;border-radius:999px;vertical-align:2px;font-style:normal;
+  font-size:9px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--sky);
+  box-shadow:inset 0 0 0 1px rgba(87,174,240,.6)}
+.chip .gtag{margin:0;background:rgba(5,12,8,.75);vertical-align:0}

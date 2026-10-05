@@ -118,6 +118,13 @@ There is no row for players who missed a match — absence is simply not being
 listed, which halves the typing. A fixture counts as logged the moment it has a
 line, so the attendance grid can tell "did not play" from "not logged yet".
 
+**One-off subs** go in `squad.csv` too, with `guest` in the `active` column
+(`Liz,Liz,guest`). Log them like anyone else: their goals and assists count, in
+the match and in Season leaders, with a small "guest" tag; they stay off the
+attendance grid, the squad wall and the socials. A guest who shares a name gets
+a different id and the same name (`Bastiaan2,Bastiaan,guest`). Change `guest` to
+`true` if one becomes a regular.
+
 The ids come from `data/squad.csv` and are yours to choose. Short lowercase
 names beat numbers: you will be typing them on a phone on the way home.
 
