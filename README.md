@@ -118,6 +118,12 @@ There is no row for players who missed a match — absence is simply not being
 listed, which halves the typing. A fixture counts as logged the moment it has a
 line, so the attendance grid can tell "did not play" from "not logged yet".
 
+**Own goals** go in the goals column as `OG:1`: they count towards the score
+check and show as "Own goal" in the match, but belong to no player. **Lent to
+the other side** for a night (they were short)? Put those ids in the `loaned`
+column, e.g. `Loek;Marlo`: the match shows "Played for …" and their attendance
+cell gets a ⇄ instead of counting as an appearance or a miss.
+
 **One-off subs** go in `squad.csv` too, with `guest` in the `active` column
 (`Liz,Liz,guest`). Log them like anyone else: their goals and assists count, in
 the match and in Season leaders, with a small "guest" tag; they stay off the

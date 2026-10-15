@@ -658,3 +658,10 @@ section h2::before{
   font-size:9px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--sky);
   box-shadow:inset 0 0 0 1px rgba(87,174,240,.6)}
 .chip .gtag{margin:0;background:rgba(5,12,8,.75);vertical-align:0}
+
+/* ---------- own goals and players lent to the other side ---------- */
+
+.strip .sub.og{padding-left:11px;font-style:italic;color:var(--mute)}
+.strip.loan .lbl{color:var(--sky)}
+.attrow .cell.loan .swap,.legend .swap{font-style:normal;font-weight:800;font-size:13px;line-height:1;color:var(--sky)}
+.legend .swap{margin-right:6px}

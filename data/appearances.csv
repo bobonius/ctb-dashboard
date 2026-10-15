@@ -2,6 +2,7 @@
 #   fixture_id  the id from fixtures.csv
 #   squad       everyone who played, ids separated by semicolons
 #   goals       ids of scorers, id:2 for a brace. A scorer not in squad is added to it.
+#               OG:1 is an own goal by the other side: counts in the score, not for a player.
 #   assists     same shape
 #   clean_sheets  keeper and defenders of a match we kept at nil, e.g.
 #               Bob;Tom;Marlo;Stefan. Typed, not taken from the formation,
@@ -18,8 +19,11 @@
 #   5,Tom;Stefan;Dani,Tom:2;Dani,Stefan,Bob,Bob,Tom,GK:Bob;CB:Tom
 # Commas inside a quoted field still parse, so old rows keep working.
 
-fixture_id,squad,goals,assists,clean_sheets,pens_saved,motm,formation
+#   loaned      ours who played for the other side that night (they were short), e.g. Loek;Marlo
+
+fixture_id,squad,goals,assists,clean_sheets,pens_saved,motm,formation,loaned
 5,Bob;Tom;Marlo;Loek;Odin;Dani;Jesse;Stefan;Twan,,,Bob;Tom;Marlo;Stefan,,Bob,GK:Bob;CB:Tom;CB:Marlo;CM:Loek;LM:Odin;RM:Dani;ST:Jesse;BENCH:Stefan;BENCH:Twan
 14,Odin;Chris;Bob;Stefan;Marlo;Jesse;Dani;Loek;Tom,Odin:2;Jesse:2;Dani:1;Chris:1;Marlo:1,Marlo:1;Jesse:2;Dani:2;Odin:1,,,Odin,GK:Bob;CB:Stefan;CB:Marlo;CM:Jesse;LM:Odin;RM:Dani;ST:Loek;BENCH:Tom;BENCH:Chris
 23,Odin;Chris;Twan;Marlo;Jesse;Dani;Loek;Tom,Odin:2;Jesse:1;Tom:1,Chris:1;Jesse:2,,Twan,Jesse,GK:Twan;CB:Tom;CB:Marlo;CM:Jesse;LM:Odin;RM:Loek;ST:Chris;BENCH:Dani
 32,Bob;Tom;Marlo;Bastiaan2;Liz;Odin;Jesse;Chris;Stefan,Marlo,Tom,,,Stefan,GK:Bob;CB:Tom;CB:Marlo;CM:Bastiaan2;LM:Liz;RM:Odin;ST:Jesse;BENCH:Chris;BENCH:Stefan
+40,Bob;Tom;Chris;Twan;Odin;Thijs;Stefan;Dani;Vince;Jesse,Vince:1;OG:1;Stefan:1;Dani:1;Jesse:1;Thijs:3;Chris:1;Twan:1,Stefan:1;Jesse:1;Twan:4;Vince:1,,,Twan,GK:Bob;CB:Stefan;CB:Tom;LM:Odin;CM:Jesse;RM:Twan;ST:Chris;BENCH:Thijs;BENCH:Dani;BENCH:Vince,Loek;Marlo
