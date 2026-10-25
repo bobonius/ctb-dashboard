@@ -48,6 +48,7 @@ id,date,played_on,time,field,home,away,home_score,away_score,phase,group,note
 38,2026-10-12,,19:00,Football Field 1A,Ampel 2,DreamTeamTeam,3,4,1,
 39,2026-10-12,,19:00,Hockey Field 1B,VV De Benenbrekers,DHL dreamteam,2,6,1,
 40,2026-10-12,,19:00,Football Field 2A,Booterbal,Club Tower Brugge,2,10,1,
+## Gameweek 6:
 41,2026-10-19,,19:00,Football Field 2B,De Raafschap,Al-Cohol,3,3,1,
 42,2026-10-19,,19:00,Hockey Field 1B,Natte Honden,Team Tesla,2,2,1,
 43,2026-10-19,,19:00,Football Field 1B,MTT Gunners,De uitgelootgieters,0,0,1,
@@ -56,6 +57,7 @@ id,date,played_on,time,field,home,away,home_score,away_score,phase,group,note
 46,2026-10-19,,19:00,Hockey Field 2A,Zware Jongens,DHL dreamteam,2,4,1,
 47,2026-10-19,,19:00,Hockey Field 2B,Club Tower Brugge,Ampel 2,15,0,1,
 48,2026-10-19,,19:00,Football Field 2A,Booterbal,VV De Benenbrekers,0,8,1,
+## Gameweek 7:
 49,2026-10-26,,19:00,Hockey Field 2A,Al-Cohol,Natte Honden,,,1,
 50,2026-10-26,,19:00,Hockey Field 1A,De Raafschap,MTT Gunners,,,1,
 51,2026-10-26,,19:00,Hockey Field 1B,Team Tesla,Jiyan,,,1,
@@ -64,6 +66,7 @@ id,date,played_on,time,field,home,away,home_score,away_score,phase,group,note
 54,2026-10-26,,19:00,Football Field 2A,VVvTP – A,Club Tower Brugge,,,1,
 55,2026-10-26,,19:00,Football Field 2B,Zware Jongens,Booterbal,,,1,
 56,2026-10-26,,19:00,Football Field 1B,Ampel 2,VV De Benenbrekers,,,1,
+## Gameweek 8:
 57,2026-11-09,,19:00,Football Field 1A,MTT Gunners,Al-Cohol,,,1,
 58,2026-11-09,,19:00,Hockey Field 1A,Jiyan,Natte Honden,,,1,
 59,2026-11-09,,19:00,Hockey Field 1B,DreamTeamTeam,De Raafschap,,,1,

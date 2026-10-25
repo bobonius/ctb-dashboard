@@ -28,3 +28,4 @@ fixture_id,squad,goals,assists,clean_sheets,pens_saved,motm,formation,loaned
 32,Bob;Tom;Marlo;Bastiaan2;Liz;Odin;Jesse;Chris;Stefan,Marlo,Tom,,,Stefan,GK:Bob;CB:Tom;CB:Marlo;CM:Bastiaan2;LM:Liz;RM:Odin;ST:Jesse;BENCH:Chris;BENCH:Stefan
 40,Bob;Tom;Chris;Twan;Odin;Thijs;Stefan;Dani;Vince;Jesse,Vince:1;OG:1;Stefan:1;Dani:1;Jesse:1;Thijs:3;Chris:1;Twan:1,Stefan:1;Jesse:1;Twan:4;Vince:1,,,Twan,GK:Bob;CB:Stefan;CB:Tom;LM:Odin;CM:Jesse;RM:Twan;ST:Chris;BENCH:Thijs;BENCH:Dani;BENCH:Vince,Loek;Marlo
 47,Bob;Dani;Marlo;Jesse;Loek;Twan;Chris;Vince,Loek:6;Chris:3;Jesse:2;Twan:3;Dani:1,Loek:3;Chris:2;Jesse:2;Vince:1;Dani:1,Bob;Dani;Marlo;Jesse;Loek;Twan;Chris;Vince,,Loek,GK:Bob;CB:Dani;CB:Marlo;CM:Jesse;LM:Loek;RM:Twan;ST:Chris;BENCH:Vince
+54,,,,,,,GK:Bob;CB:Stefan;CB:Marlo;CM:Jesse;LM:Loek;RM:Dani;ST:Chris;BENCH:Odin
